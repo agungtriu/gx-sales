@@ -13,4 +13,15 @@
         <item name="postSplashScreenTheme">@style/Theme.GXSales</item>
         <item name="windowSplashScreenBackground">?attr/colorSurface</item>
     </style>
+
+    <style name="Theme.GXSales.OutlinedRoundedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.GXSales.TextInputLayout.Rounded
+        </item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.GXSales.TextInputLayout.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
 </resources>

@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">GX Sales</string>
+    <string name="login_invalid_email">Invalid email</string>
+    <string name="login_invalid_password">Invalid password</string>
+    <string name="login_email">Email</string>
+    <string name="login_email_hint">e.g john@example.com</string>
+    <string name="login_password">Password</string>
+    <string name="login_sign_in">Sign In</string>
+    <string name="all_copyright">GlobalXtreme © 2024 - V1.0</string>
+    <string name="dashboard_home">Home</string>
+    <string name="dashboard_leads">Leads</string>
+    <string name="dashboard_shop">Shop</string>
+    <string name="dashboard_account">Account</string>
+    <string name="dummy_name">Arbi Maudy</string>
+    <string name="dummy_email">arbi@example.com</string>
+    <string name="account_branch">Branch</string>
+    <string name="dummy_branch">GlobalXtreme Bali</string>
+    <string name="account_division">Division</string>
+    <string name="dummy_division">Sales</string>
+    <string name="account_job_position">Job Position</string>
+    <string name="dummy_job_position">Senior Sales</string>
+    <string name="account_log_out">Log Out</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.account.AccountBottomSheet">
+
+    <FrameLayout
+        style="@style/Widget.Material3.BottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+                android:id="@+id/draghandle_bottomsheetaccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_bottomsheetaccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_frame"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/draghandle_bottomsheetaccount"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+            <TextView
+                android:id="@+id/tv_bottomsheetaccount_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="@string/dummy_name"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/iv_bottomsheetaccount" />
+
+            <TextView
+                android:id="@+id/tv_bottomsheetaccount_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/dummy_email"
+                android:textAlignment="center"
+                android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_name" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_bottomsheetaccount_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/iv_bottomsheetaccount">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_bottomsheetaccount_name_shimmer"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorShimmer"
+                        android:fontFamily="@font/inter_semi_bold"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_bottomsheetaccount_email_shimmer"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/colorShimmer"
+                        android:fontFamily="@font/inter_regular"
+                        android:textAlignment="center"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_name_shimmer" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/tv_bottomsheetaccount_branch_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/account_branch"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                android:textColor="@color/color_account_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_email" />
+
+            <TextView
+                android:id="@+id/tv_bottomsheetaccount_branch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/dummy_branch"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="@color/color_account_item"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_branch_title" />
+
+            <TextView
+                android:id="@+id/tv_bottomsheetaccount_division_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/account_division"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                android:textColor="@color/color_account_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_branch" />
+
+            <TextView
+                android:id="@+id/tv_bottomsheetaccount_division"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/dummy_division"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="@color/color_account_item"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_division_title" />
+
+            <TextView
+                android:id="@+id/tv_bottomsheetaccount_position_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/account_job_position"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                android:textColor="@color/color_account_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_division" />
+
+            <TextView
+                android:id="@+id/tv_bottomsheetaccount_position"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/dummy_job_position"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="@color/color_account_item"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_position_title" />
+
+            <Button
+                android:id="@+id/btn_bottomsheetaccount_logout"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="58dp"
+                android:drawableEnd="@drawable/ic_logout"
+                android:text="@string/account_log_out"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_position" />
+
+            <ProgressBar
+                android:id="@+id/pb_bottomsheetaccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/btn_bottomsheetaccount_logout"
+                app:layout_constraintEnd_toEndOf="@id/btn_bottomsheetaccount_logout"
+                app:layout_constraintStart_toStartOf="@id/btn_bottomsheetaccount_logout"
+                app:layout_constraintTop_toTopOf="@id/btn_bottomsheetaccount_logout" />
+
+            <TextView
+                android:id="@+id/tv_bottomsheetaccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="76dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/all_copyright"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_bottomsheetaccount_logout"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

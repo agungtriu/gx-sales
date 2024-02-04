@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.agungtriu.gxsales.ui.dashboard.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/shopFragment"
+        android:name="com.agungtriu.gxsales.ui.dashboard.shop.ShopFragment"
+        android:label="fragment_shop"
+        tools:layout="@layout/fragment_shop" />
+    <fragment
+        android:id="@+id/leadsFragment"
+        android:name="com.agungtriu.gxsales.ui.dashboard.leads.LeadsFragment"
+        android:label="fragment_leads"
+        tools:layout="@layout/fragment_leads" />
+
+    <action
+        android:id="@+id/action_dashboard_to_home"
+        app:destination="@id/homeFragment"
+        app:popUpTo="@id/bottom_navigation"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_dashboard_to_leads"
+        app:destination="@id/leadsFragment"
+        app:popUpTo="@id/bottom_navigation"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_dashboard_to_shop"
+        app:destination="@id/shopFragment"
+        app:popUpTo="@id/bottom_navigation"
+        app:popUpToInclusive="true" />
+</navigation>

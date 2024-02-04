@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="color_edit_text_title">#344054</color>
+    <color name="color_edit_text">#667085</color>
+    <color name="color_button">#F9C900</color>
+    <color name="color_text_button">#667085</color>
+    <color name="color_text_title">#6F708B</color>
+    <color name="color_text_date">#26273B</color>
+    <color name="color_edit_text_border">#D0D5DD</color>
+    <color name="color_account_email">#545454</color>
+    <color name="color_account_title">#575C5F</color>
+    <color name="color_account_item">#333638</color>
+    <color name="colorShimmer">#DDDDDD</color>
 </resources>
