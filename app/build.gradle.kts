@@ -50,6 +50,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("com.google.dagger:hilt-android:2.48.1")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     kapt("com.google.dagger:hilt-android-compiler:2.48.1")
