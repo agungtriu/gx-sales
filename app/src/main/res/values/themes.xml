@@ -31,6 +31,11 @@
         </item>
     </style>
 
+    <style name="Theme.GXSales.OutlinedRoundedBox.Search" parent="">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.GXSales.Rounded
+        </item>
+    </style>
 
     <style name="Theme.GXSales.Button.OutlinedRoundedBox.Date" parent="Theme.GXSales.Button.OutlinedRoundedBox">
         <item name="boxStrokeColor">#ACADC1</item>
@@ -42,5 +47,24 @@
         <item name="strokeColor">#F9C900</item>
         <item name="android:textColor">#161200</item>
         <item name="drawableTint">#161200</item>
+    </style>
+
+    <style name="Theme.GXSales.Button.OutlinedRoundedBox.Reset" parent="Theme.GXSales.Button.OutlinedRoundedBox">
+        <item name="backgroundTint">@color/white</item>
+        <item name="strokeColor">#D0D5DD</item>
+        <item name="android:textColor">#344054</item>
+    </style>
+
+    <style name="Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.GXSales.Rounded
+        </item>
+        <item name="boxStrokeColor">#ACADC1</item>
+        <item name="backgroundColor">?attr/colorSurface</item>
+    </style>
+
+    <style name="Theme.GXSales.TextAppearance.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/inter_semi_bold</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

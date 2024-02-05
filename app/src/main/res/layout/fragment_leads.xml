@@ -1,13 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.leads.LeadsFragment">
 
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_leads"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/dashboard_leads" />
+        android:layout_height="wrap_content"
+        android:background="@color/color_surface"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_leads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/dashboard_leads"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleLarge" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_leads_search"
+        style="@style/Theme.GXSales.OutlinedRoundedBox.Search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:boxStrokeColor="@color/color_edit_text_border"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@id/btn_leads_filter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar_leads">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_leads_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/inter_regular"
+            android:hint="@string/hint_name"
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:textColorHint="@color/color_edit_text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_leads_filter"
+        style="@style/Theme.GXSales.Button.OutlinedRoundedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:drawableLeft="@drawable/ic_filter"
+        android:fontFamily="@font/inter_medium"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/leads_filter"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+        android:textColor="#0C0F14"
+        app:layout_constraintBottom_toBottomOf="@id/til_leads_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/til_leads_search"
+        app:layout_constraintTop_toTopOf="@id/til_leads_search" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider_leads_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/til_leads_search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_leads"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_leads_top"
+        tools:listitem="@layout/item_leads" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_leads"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_leads_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_leads_shimmer" />
+
+            <include layout="@layout/item_leads_shimmer" />
+
+            <include layout="@layout/item_leads_shimmer" />
+
+            <include layout="@layout/item_leads_shimmer" />
+
+            <include layout="@layout/item_leads_shimmer" />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,4 +18,8 @@ abstract class DataModule {
     @Binds
     abstract fun bindDashboardRepository(dashboardRepositoryImp: DashboardRepositoryImp): DashboardRepository
 
+    @Singleton
+    @Binds
+    abstract fun bindLeadsRepository(leadsRepositoryImp: LeadsRepositoryImp): LeadsRepository
+
 }

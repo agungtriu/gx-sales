@@ -40,36 +40,36 @@ interface ApiService {
     @GET("settings/branch-offices")
     suspend fun getBranchOffices(): BranchOfficeResponse
 
-    @GET("settings/type")
+    @GET("settings/types")
     suspend fun getTypes(): TypeResponse
 
-    @GET("settings/probability")
+    @GET("settings/probabilities")
     suspend fun getProbabilities(): ProbabilityResponse
 
-    @GET("settings/status")
+    @GET("settings/statuses")
     suspend fun getStatuses(): StatusResponse
 
-    @GET("settings/channel")
+    @GET("settings/channels")
     suspend fun getChannels(): ChannelResponse
 
-    @GET("settings/media")
+    @GET("settings/medias")
     suspend fun getMedias(): MediaResponse
 
-    @GET("settings/source")
+    @GET("settings/sources")
     suspend fun getSources(): SourceResponse
 
     @GET("leads")
     suspend fun getLeads(): LeadsResponse
 
     @GET("leads/{id}")
-    suspend fun getLead(@Path("id") id: String): LeadResponse
+    suspend fun getLead(@Path("id") id: Int): LeadResponse
 
     @DELETE("leads/{id}")
-    suspend fun deleteLead(@Path("id") id: String): DeleteLeadResponse
+    suspend fun deleteLead(@Path("id") id: Int): DeleteLeadResponse
 
     @PATCH("leads/{id}/status")
     suspend fun patchStatus(
-        @Path("id") id: String,
+        @Path("id") id: Int,
         @Body updateStatusRequest: UpdateStatusRequest
     ): UpdateStatusResponse
 

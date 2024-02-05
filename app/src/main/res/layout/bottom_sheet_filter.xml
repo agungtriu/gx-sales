@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.account.AccountBottomSheet">
+
+    <FrameLayout
+        style="@style/Widget.Material3.BottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+                android:id="@+id/draghandle_bottomsheetfilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fillViewport="true"
+                app:layout_constraintTop_toBottomOf="@id/draghandle_bottomsheetfilter">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <TextView
+                        android:id="@+id/tv_bottomsheetfilter_filter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:fontFamily="@font/inter_semi_bold"
+                        android:text="@string/leads_filter"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_bottomsheetfilter_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/filter_date_range"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="@color/color_account_item"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetfilter_filter" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_bottomsheetfilter_date"
+                        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="4dp"
+                        android:drawableEnd="@drawable/ic_calendar"
+                        android:drawableTint="@color/black"
+                        android:fontFamily="@font/poppins_medium"
+                        android:includeFontPadding="false"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="@string/hint_range_date"
+                        android:textAlignment="textStart"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                        android:textColor="#667085"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetfilter_date" />
+
+
+                    <TextView
+                        android:id="@+id/tv_bottomsheetfilter_status_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/filter_status"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="@color/color_account_item"
+                        app:layout_constraintTop_toBottomOf="@id/btn_bottomsheetfilter_date" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_bottomsheetfilter_status"
+                        style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="4dp"
+                        app:hintEnabled="false"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetfilter_status_title">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/tv_bottomsheetfilter_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_regular"
+                            android:hint="@string/hint_select_status"
+                            android:inputType="none"
+                            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                            android:textColorHint="#667085" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_bottomsheetfilter_status"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/til_bottomsheetfilter_status"
+                        app:layout_constraintEnd_toEndOf="@id/til_bottomsheetfilter_status"
+                        app:layout_constraintStart_toStartOf="@id/til_bottomsheetfilter_status"
+                        app:layout_constraintTop_toTopOf="@id/til_bottomsheetfilter_status">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_shimmer" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_bottomsheetfilter_channel_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/filter_channel"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="@color/color_account_item"
+                        app:layout_constraintTop_toBottomOf="@id/til_bottomsheetfilter_status" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_bottomsheetfilter_channel"
+                        style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="4dp"
+                        app:hintEnabled="false"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetfilter_channel_title">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/tv_bottomsheetfilter_channel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_regular"
+                            android:hint="@string/hint_select_channel"
+                            android:inputType="none"
+                            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                            android:textColorHint="#667085" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_bottomsheetfilter_channel"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/til_bottomsheetfilter_channel"
+                        app:layout_constraintEnd_toEndOf="@id/til_bottomsheetfilter_channel"
+                        app:layout_constraintStart_toStartOf="@id/til_bottomsheetfilter_channel"
+                        app:layout_constraintTop_toTopOf="@id/til_bottomsheetfilter_channel">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_shimmer" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <TextView
+                        android:id="@+id/tv_bottomsheetfilter_media_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/filter_media"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="@color/color_account_item"
+                        app:layout_constraintTop_toBottomOf="@id/til_bottomsheetfilter_channel" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_bottomsheetfilter_media"
+                        style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="4dp"
+                        app:hintEnabled="false"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetfilter_media_title">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/tv_bottomsheetfilter_media"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_regular"
+                            android:hint="@string/hint_select_media"
+                            android:inputType="none"
+                            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                            android:textColorHint="#667085" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_bottomsheetfilter_media"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/til_bottomsheetfilter_media"
+                        app:layout_constraintEnd_toEndOf="@id/til_bottomsheetfilter_media"
+                        app:layout_constraintStart_toStartOf="@id/til_bottomsheetfilter_media"
+                        app:layout_constraintTop_toTopOf="@id/til_bottomsheetfilter_media">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_shimmer" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <TextView
+                        android:id="@+id/tv_bottomsheetfilter_source_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/filter_source"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="@color/color_account_item"
+                        app:layout_constraintTop_toBottomOf="@id/til_bottomsheetfilter_media" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_bottomsheetfilter_source"
+                        style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="4dp"
+                        app:hintEnabled="false"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetfilter_source_title">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/tv_bottomsheetfilter_source"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_regular"
+                            android:hint="@string/hint_select_source"
+                            android:inputType="none"
+                            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                            android:textColorHint="#667085" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_bottomsheetfilter_source"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/til_bottomsheetfilter_source"
+                        app:layout_constraintEnd_toEndOf="@id/til_bottomsheetfilter_source"
+                        app:layout_constraintStart_toStartOf="@id/til_bottomsheetfilter_source"
+                        app:layout_constraintTop_toTopOf="@id/til_bottomsheetfilter_source">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_shimmer" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <View
+                        android:id="@+id/view_bottomsheetfilter_start"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_bottomsheetfilter_reset"
+                        app:layout_constraintEnd_toStartOf="@id/btn_bottomsheetfilter_reset"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/btn_bottomsheetfilter_reset" />
+
+
+                    <Button
+                        android:id="@+id/btn_bottomsheetfilter_reset"
+                        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Reset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/filter_reset"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/btn_bottomsheetfilter_search"
+                        app:layout_constraintStart_toEndOf="@id/view_bottomsheetfilter_start"
+                        app:layout_constraintTop_toBottomOf="@id/til_bottomsheetfilter_source"
+                        app:layout_constraintVertical_bias="0.0" />
+
+
+                    <Button
+                        android:id="@+id/btn_bottomsheetfilter_search"
+                        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/filter_search"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_bottomsheetfilter_reset"
+                        app:layout_constraintEnd_toStartOf="@id/view_bottomsheetfilter_end"
+                        app:layout_constraintStart_toEndOf="@id/btn_bottomsheetfilter_reset"
+                        app:layout_constraintTop_toTopOf="@id/btn_bottomsheetfilter_reset" />
+
+
+                    <View
+                        android:id="@+id/view_bottomsheetfilter_end"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_bottomsheetfilter_reset"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btn_bottomsheetfilter_search"
+                        app:layout_constraintTop_toTopOf="@id/btn_bottomsheetfilter_reset" />
+
+                    <ProgressBar
+                        android:id="@+id/pb_bottomsheetfilter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_bottomsheetfilter_search"
+                        app:layout_constraintEnd_toEndOf="@id/btn_bottomsheetfilter_search"
+                        app:layout_constraintStart_toStartOf="@id/btn_bottomsheetfilter_search"
+                        app:layout_constraintTop_toTopOf="@id/btn_bottomsheetfilter_search" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

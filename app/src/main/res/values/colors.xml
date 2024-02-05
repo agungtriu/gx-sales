@@ -14,4 +14,11 @@
     <color name="color_account_title">#575C5F</color>
     <color name="color_account_item">#333638</color>
     <color name="color_shimmer">#DDDDDD</color>
+
+    <color name="color_scheduled">#0085FF</color>
+    <color name="color_pending">#F9C900</color>
+    <color name="color_consideration">#145CA0</color>
+    <color name="color_converted">#2DB986</color>
+    <color name="color_junk">#FFAD4D</color>
+    <color name="color_cancel">#B92D2D</color>
 </resources>

@@ -2,11 +2,10 @@ package com.agungtriu.gxsales.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import com.agungtriu.gxsales.R
-import com.facebook.shimmer.BuildConfig
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 object Utils {
@@ -16,9 +15,31 @@ object Utils {
         val date = Date(timeInMillis)
         return dateFormat.format(date)
     }
+
+    fun displayDate(data: String): String {
+        val inputFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        val originalDate = inputFormat.parse(data)
+        val outputFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        return outputFormat.format(originalDate)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun dateToMillis(dateString: String): Long {
+        val format = SimpleDateFormat("dd/MM/yyyy HH:mm")
+        val date = format.parse(dateString)
+        return date?.time ?: 0
+    }
+
     @SuppressLint("SimpleDateFormat")
     fun millisToDate(timeInMillis: Long): String {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        val date = Date(timeInMillis)
+        return dateFormat.format(date)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun millisToDateTime(timeInMillis: Long): String {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm")
         val date = Date(timeInMillis)
         return dateFormat.format(date)
     }

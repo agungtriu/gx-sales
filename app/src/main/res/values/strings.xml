@@ -22,4 +22,18 @@
     <string name="account_log_out">Log Out</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_name">e.g John Doe</string>
+    <string name="leads_filter">Filter</string>
+    <string name="filter_date_range">Date Range</string>
+    <string name="hint_range_date">dd/mm/yyyy - dd/mm/yyyy</string>
+    <string name="filter_reset">Reset</string>
+    <string name="filter_search">Search</string>
+    <string name="filter_status">Status</string>
+    <string name="filter_channel">Channel</string>
+    <string name="filter_media">Media</string>
+    <string name="filter_source">Source</string>
+    <string name="hint_select_status">- Select Status -</string>
+    <string name="hint_select_channel">- Select Channel -</string>
+    <string name="hint_select_media">- Select Media -</string>
+    <string name="hint_select_source">- Select Source -</string>
 </resources>
