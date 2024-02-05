@@ -10,6 +10,7 @@ import com.agungtriu.gxsales.data.remote.request.LoginRequest
 import com.agungtriu.gxsales.databinding.FragmentLoginBinding
 import com.agungtriu.gxsales.utils.FormValidation
 import com.agungtriu.gxsales.utils.UIState
+import com.agungtriu.gxsales.utils.Utils
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +21,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.tvLoginCopyright.text = Utils.copyright(requireContext())
         setUpObserver()
         setUpListener()
     }

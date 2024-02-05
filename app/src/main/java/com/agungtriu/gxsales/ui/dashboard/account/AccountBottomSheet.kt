@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.agungtriu.gxsales.R
 import com.agungtriu.gxsales.databinding.BottomSheetAccountBinding
 import com.agungtriu.gxsales.utils.UIState
+import com.agungtriu.gxsales.utils.Utils
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -40,6 +41,7 @@ class AccountBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val modalBottomSheetBehavior = (dialog as BottomSheetDialog).behavior
         modalBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        binding.tvBottomsheetaccountCopyright.text = Utils.copyright(requireContext())
         setUpObserver()
         setUpListener()
     }

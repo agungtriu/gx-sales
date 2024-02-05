@@ -34,24 +34,22 @@
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#F2F2F3"
         app:layout_constraintBottom_toTopOf="@id/bnv_dashboard"
         app:layout_constraintEnd_toStartOf="@id/btn_dashboard"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#F2F2F3"
         app:layout_constraintBottom_toTopOf="@id/bnv_dashboard"
-        app:layout_constraintStart_toEndOf="@id/btn_dashboard"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_dashboard" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_dashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="?attr/colorSurface"
+        app:itemBackground="@color/color_surface"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom" />

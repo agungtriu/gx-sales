@@ -14,4 +14,8 @@ abstract class DataModule {
     @Binds
     abstract fun bindAuthorizationRepository(authorizationRepositoryImp: AuthorizationRepositoryImp): AuthorizationRepository
 
+    @Singleton
+    @Binds
+    abstract fun bindDashboardRepository(dashboardRepositoryImp: DashboardRepositoryImp): DashboardRepository
+
 }

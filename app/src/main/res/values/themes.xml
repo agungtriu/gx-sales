@@ -1,8 +1,8 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.GXSales" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowBackground">?attr/colorSurface</item>
-        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowBackground">@color/color_surface</item>
+        <item name="android:statusBarColor">@color/color_surface</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
@@ -11,17 +11,36 @@
     <style name="Theme.GXSales.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_background</item>
         <item name="postSplashScreenTheme">@style/Theme.GXSales</item>
-        <item name="windowSplashScreenBackground">?attr/colorSurface</item>
+        <item name="windowSplashScreenBackground">@color/color_surface</item>
     </style>
 
     <style name="Theme.GXSales.OutlinedRoundedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="shapeAppearanceOverlay">
-            @style/ShapeAppearanceOverlay.GXSales.TextInputLayout.Rounded
+            @style/ShapeAppearanceOverlay.GXSales.Rounded
         </item>
     </style>
 
-    <style name="ShapeAppearanceOverlay.GXSales.TextInputLayout.Rounded" parent="">
+    <style name="ShapeAppearanceOverlay.GXSales.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="Theme.GXSales.Button.OutlinedRoundedBox" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.GXSales.Rounded
+        </item>
+    </style>
+
+
+    <style name="Theme.GXSales.Button.OutlinedRoundedBox.Date" parent="Theme.GXSales.Button.OutlinedRoundedBox">
+        <item name="boxStrokeColor">#ACADC1</item>
+        <item name="backgroundColor">?attr/colorSurface</item>
+    </style>
+
+    <style name="Theme.GXSales.Button.OutlinedRoundedBox.Login" parent="Theme.GXSales.Button.OutlinedRoundedBox">
+        <item name="backgroundTint">#F9C900</item>
+        <item name="strokeColor">#F9C900</item>
+        <item name="android:textColor">#161200</item>
+        <item name="drawableTint">#161200</item>
     </style>
 </resources>

@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="color_surface">@color/white</color>
     <color name="color_edit_text_title">#344054</color>
     <color name="color_edit_text">#667085</color>
     <color name="color_button">#F9C900</color>
@@ -12,5 +13,5 @@
     <color name="color_account_email">#545454</color>
     <color name="color_account_title">#575C5F</color>
     <color name="color_account_item">#333638</color>
-    <color name="colorShimmer">#DDDDDD</color>
+    <color name="color_shimmer">#DDDDDD</color>
 </resources>

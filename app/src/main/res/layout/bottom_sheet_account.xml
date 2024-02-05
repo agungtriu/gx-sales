@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="16dp"
-                        android:background="@color/colorShimmer"
+                        android:background="@color/color_shimmer"
                         android:fontFamily="@font/inter_semi_bold"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="2dp"
-                        android:background="@color/colorShimmer"
+                        android:background="@color/color_shimmer"
                         android:fontFamily="@font/inter_regular"
                         android:textAlignment="center"
                         android:textSize="10sp"
@@ -125,6 +125,14 @@
                 android:textColor="@color/color_account_item"
                 app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_branch_title" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@id/tv_bottomsheetaccount_branch"
+                app:layout_constraintStart_toStartOf="@id/tv_bottomsheetaccount_branch"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_branch" />
+
             <TextView
                 android:id="@+id/tv_bottomsheetaccount_division_title"
                 android:layout_width="match_parent"
@@ -148,6 +156,14 @@
                 android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
                 android:textColor="@color/color_account_item"
                 app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_division_title" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@id/tv_bottomsheetaccount_division"
+                app:layout_constraintStart_toStartOf="@id/tv_bottomsheetaccount_division"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_division" />
 
             <TextView
                 android:id="@+id/tv_bottomsheetaccount_position_title"
@@ -173,16 +189,67 @@
                 android:textColor="@color/color_account_item"
                 app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_position_title" />
 
-            <Button
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@id/tv_bottomsheetaccount_position"
+                app:layout_constraintStart_toStartOf="@id/tv_bottomsheetaccount_position"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_position" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_bottomsheetaccount_logout"
-                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="58dp"
-                android:drawableEnd="@drawable/ic_logout"
-                android:text="@string/account_log_out"
-                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_position" />
+                android:background="@drawable/all_rectangle_rounded_8dp_logout"
+                android:padding="10dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottomsheetaccount_position">
+
+                <View
+                    android:id="@+id/view_bottomsheetaccount_start"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_bottomsheetaccount_logout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_bottomsheetaccount_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/account_log_out"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                    android:textColor="#DE5263"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_bottomsheetaccount_logout"
+                    app:layout_constraintStart_toEndOf="@id/view_bottomsheetaccount_start"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_bottomsheetaccount_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_logout"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/view_bottomsheetaccount_end"
+                    app:layout_constraintStart_toEndOf="@id/tv_bottomsheetaccount_logout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#DE5263" />
+
+                <View
+                    android:id="@+id/view_bottomsheetaccount_end"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_bottomsheetaccount_logout"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ProgressBar
                 android:id="@+id/pb_bottomsheetaccount"
@@ -195,12 +262,15 @@
                 app:layout_constraintTop_toTopOf="@id/btn_bottomsheetaccount_logout" />
 
             <TextView
-                android:id="@+id/tv_bottomsheetaccount"
+                android:id="@+id/tv_bottomsheetaccount_copyright"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
                 android:layout_marginBottom="16dp"
+                android:fontFamily="@font/inter_regular"
                 android:text="@string/all_copyright"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                android:textColor="#CACACA"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
