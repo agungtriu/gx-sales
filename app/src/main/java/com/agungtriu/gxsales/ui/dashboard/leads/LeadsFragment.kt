@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.agungtriu.gxsales.base.BaseFragment
 import com.agungtriu.gxsales.data.remote.response.LeadResponse
@@ -29,9 +30,12 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = LeadsAdapter()
+        adapter = LeadsAdapter(requireActivity(), viewModel)
         binding.rvLeads.layoutManager = LinearLayoutManager(requireContext())
         binding.rvLeads.adapter = adapter
+
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
+        itemTouchHelper.attachToRecyclerView(binding.rvLeads)
 
         setUpObserver()
         setUpListener()
@@ -153,6 +157,18 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
                     list = it.data
                     adapter.submitList(list)
                 }
+            }
+        }
+        viewModel.resultDelete.observe(viewLifecycleOwner) {
+            when (it) {
+                is UIState.Loading -> startShimmer()
+                is UIState.Error -> {
+                    stopShimmer()
+                    Snackbar.make(requireView(), it.error.message.toString(), Snackbar.LENGTH_LONG)
+                        .show()
+                }
+
+                is UIState.Success -> viewModel.getLeads()
             }
         }
     }

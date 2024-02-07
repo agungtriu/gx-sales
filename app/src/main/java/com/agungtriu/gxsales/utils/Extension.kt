@@ -5,6 +5,8 @@ import com.google.gson.Gson
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.HttpURLConnection
+import java.text.NumberFormat
+import java.util.Locale
 
 object Extension {
     fun Throwable.toErrorResponse(): ErrorResponse {
@@ -26,5 +28,10 @@ object Extension {
                 ErrorResponse(status = null, message = this.message)
             }
         }
+    }
+
+    fun Long.toDisplay(): String {
+        val formatter = NumberFormat.getInstance(Locale.getDefault())
+        return formatter.format(this)
     }
 }

@@ -70,5 +70,9 @@ class DashboardFragment :
                 else -> false
             }
         }
+
+        binding.btnDashboard.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_addLeadFragment)
+        }
     }
 }

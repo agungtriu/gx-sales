@@ -9,10 +9,9 @@ import com.agungtriu.gxsales.data.DashboardRepository
 import com.agungtriu.gxsales.data.remote.response.Dashboard
 import com.agungtriu.gxsales.data.remote.response.Profile
 import com.agungtriu.gxsales.utils.UIState
-import com.agungtriu.gxsales.utils.Utils.currentMillis
+import com.agungtriu.gxsales.utils.Utils.beforeDayMillis
+import com.agungtriu.gxsales.utils.Utils.endOfDayMillis
 import com.agungtriu.gxsales.utils.Utils.millisToDate
-import com.agungtriu.gxsales.utils.Utils.millisToDisplayDate
-import com.agungtriu.gxsales.utils.Utils.nextDayMillis
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,6 +26,8 @@ class HomeViewModel @Inject constructor(
 
     private var _resultDashboard = MutableLiveData<UIState<Dashboard>>()
     val resultDashboard: LiveData<UIState<Dashboard>> get() = _resultDashboard
+    var fromMillis = beforeDayMillis(7)
+    var toMillis = endOfDayMillis()
 
     init {
         getProfile()
@@ -42,8 +43,8 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getDashboard(
-        fromDate: String? = millisToDate(currentMillis()),
-        toDate: String? = millisToDate(nextDayMillis(7))
+        fromDate: String? = millisToDate(fromMillis),
+        toDate: String? = millisToDate(toMillis)
     ) {
         viewModelScope.launch {
             dashboardRepository.getDashboard(fromDate, toDate).collect {

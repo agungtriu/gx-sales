@@ -1,17 +1,22 @@
 package com.agungtriu.gxsales.ui.dashboard.leads
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.agungtriu.gxsales.R
 import com.agungtriu.gxsales.data.remote.response.LeadResponse
 import com.agungtriu.gxsales.databinding.ItemLeadsBinding
+import com.agungtriu.gxsales.ui.MainActivity
+import com.agungtriu.gxsales.ui.dashboard.addlead.AddLeadFragment.Companion.UPDATE_KEY
 import com.agungtriu.gxsales.utils.Utils
 
-class LeadsAdapter : ListAdapter<LeadResponse, LeadsAdapter.ViewHolder>(callback) {
+class LeadsAdapter(private val activity: Activity, private val viewModel: LeadsViewModel) :
+    ListAdapter<LeadResponse, LeadsAdapter.ViewHolder>(callback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         ItemLeadsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,11 +27,16 @@ class LeadsAdapter : ListAdapter<LeadResponse, LeadsAdapter.ViewHolder>(callback
         holder.bind(item)
     }
 
+    fun deleteItem(position: Int) {
+        val list = currentList.toMutableList()
+        list[position].id?.let { viewModel.delete(it) }
+    }
+
     inner class ViewHolder(private val binding: ItemLeadsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: LeadResponse) {
             binding.tvItemleadsName.text = item.fullName
-            binding.tvItemleadsNumber.text = "#".plus(item.iDNumber)
+            binding.tvItemleadsNumber.text = "#".plus(item.number)
             binding.tvItemleadsAddress.text = item.address
             binding.tvItemleadsDate.text = Utils.displayDate(item.createdAt!!)
             binding.tvItemleadsStatus.text = item.status?.name
@@ -61,6 +71,13 @@ class LeadsAdapter : ListAdapter<LeadResponse, LeadsAdapter.ViewHolder>(callback
 
                 "Cancel" -> ContextCompat.getColorStateList(itemView.context, R.color.color_cancel)
                 else -> ContextCompat.getColorStateList(itemView.context, R.color.black)
+            }
+
+            binding.constraintItemleads.setOnClickListener {
+                (activity as MainActivity).navigate(
+                    R.id.action_global_to_addLeadFragment,
+                    bundleOf(UPDATE_KEY to item.id)
+                )
             }
         }
     }

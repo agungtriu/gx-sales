@@ -9,6 +9,9 @@ import com.agungtriu.gxsales.data.remote.AuthAuthenticator
 import com.agungtriu.gxsales.data.remote.AuthInterceptor
 import com.agungtriu.gxsales.utils.Config.API_BASE_URL
 import com.agungtriu.gxsales.utils.Config.DATASTORE_NAME
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.chuckerteam.chucker.api.RetentionManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,11 +38,36 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun provideChuckerCollector(@ApplicationContext appContext: Context): ChuckerCollector {
+        return ChuckerCollector(
+            context = appContext,
+            showNotification = true,
+            retentionPeriod = RetentionManager.Period.ONE_HOUR
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideChuckerInterceptor(
+        @ApplicationContext appContext: Context,
+        chuckerCollector: ChuckerCollector
+    ): ChuckerInterceptor {
+        return ChuckerInterceptor
+            .Builder(appContext)
+            .collector(chuckerCollector)
+            .createShortcut(true)
+            .build()
+    }
+
+    @Singleton
+    @Provides
     fun provideClient(
+        chuckerInterceptor: ChuckerInterceptor,
         authInterceptor: AuthInterceptor,
         authAuthenticator: AuthAuthenticator
     ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(authInterceptor)
+        .addInterceptor(chuckerInterceptor)
         .authenticator(authAuthenticator)
         .build()
 

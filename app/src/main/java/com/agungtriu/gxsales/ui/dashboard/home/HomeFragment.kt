@@ -2,6 +2,7 @@ package com.agungtriu.gxsales.ui.dashboard.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,13 +10,14 @@ import com.agungtriu.gxsales.base.BaseFragment
 import com.agungtriu.gxsales.data.remote.response.StatusesItem
 import com.agungtriu.gxsales.databinding.FragmentHomeBinding
 import com.agungtriu.gxsales.utils.UIState
-import com.agungtriu.gxsales.utils.Utils.currentMillis
-import com.agungtriu.gxsales.utils.Utils.millisToDate
+import com.agungtriu.gxsales.utils.Utils
+import com.agungtriu.gxsales.utils.Utils.beforeDayMillis
+import com.agungtriu.gxsales.utils.Utils.endOfDayMillis
 import com.agungtriu.gxsales.utils.Utils.millisToDisplayDate
-import com.agungtriu.gxsales.utils.Utils.nextDayMillis
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
 import androidx.core.util.Pair as APair
 
 @AndroidEntryPoint
@@ -28,9 +30,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         adapter = HomeAdapter()
         binding.rvHome.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvHome.adapter = adapter
-        binding.btnHomeDate.text = millisToDisplayDate(currentMillis())
+        Log.d("BEFORE", Utils.millisToDateTime(viewModel.fromMillis))
+        Log.d("TO", Utils.millisToDateTime(viewModel.toMillis))
+        binding.btnHomeDate.text = millisToDisplayDate(viewModel.fromMillis)
             .plus(" - ")
-            .plus(millisToDisplayDate(nextDayMillis(7)))
+            .plus(millisToDisplayDate(viewModel.toMillis))
         setUpObserver()
         setUpListener()
     }
@@ -44,20 +48,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 .setTitleText("Select dates")
                 .setSelection(
                     APair(
-                        MaterialDatePicker.todayInUtcMilliseconds(),
-                        MaterialDatePicker.todayInUtcMilliseconds()
+                        viewModel.fromMillis.plus(TimeUnit.HOURS.toMillis(7)),
+                        viewModel.toMillis.minus(TimeUnit.HOURS.toMillis(16))
                     )
                 ).build()
             datePicker.show(childFragmentManager, "DatePicker")
             datePicker.addOnPositiveButtonClickListener {
+                viewModel.fromMillis =
+                    datePicker.selection?.first?.minus(TimeUnit.HOURS.toMillis(7))
+                        ?: beforeDayMillis(7)
+                viewModel.toMillis = datePicker.selection?.second?.plus(TimeUnit.HOURS.toMillis(16))
+                    ?: endOfDayMillis()
                 binding.btnHomeDate.text =
-                    millisToDisplayDate(datePicker.selection?.first ?: currentMillis())
+                    millisToDisplayDate(viewModel.fromMillis)
                         .plus(" - ")
-                        .plus(millisToDisplayDate(datePicker.selection?.second ?: nextDayMillis(7)))
-                viewModel.getDashboard(
-                    fromDate = millisToDate(datePicker.selection?.first ?: currentMillis()),
-                    toDate = millisToDate(datePicker.selection?.second ?: nextDayMillis(7))
-                )
+                        .plus(millisToDisplayDate(viewModel.toMillis))
+                viewModel.getDashboard()
             }
         }
     }

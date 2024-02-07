@@ -21,4 +21,5 @@
     <color name="color_converted">#2DB986</color>
     <color name="color_junk">#FFAD4D</color>
     <color name="color_cancel">#B92D2D</color>
+    <color name="color_form_title">#454560</color>
 </resources>

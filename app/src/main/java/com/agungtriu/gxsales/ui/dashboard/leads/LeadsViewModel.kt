@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.agungtriu.gxsales.data.LeadsRepository
+import com.agungtriu.gxsales.data.remote.response.DeleteLeadResponse
 import com.agungtriu.gxsales.data.remote.response.LeadResponse
 import com.agungtriu.gxsales.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,6 +27,16 @@ class LeadsViewModel @Inject constructor(private val leadsRepository: LeadsRepos
         viewModelScope.launch {
             leadsRepository.getLeads().collect {
                 _resultLeads.value = it
+            }
+        }
+    }
+
+    private var _resultDelete = MutableLiveData<UIState<DeleteLeadResponse>>()
+    val resultDelete: LiveData<UIState<DeleteLeadResponse>> get() = _resultDelete
+    fun delete(id: Int) {
+        viewModelScope.launch {
+            leadsRepository.delete(id).collect {
+                _resultDelete.value = it
             }
         }
     }

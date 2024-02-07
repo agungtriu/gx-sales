@@ -1,7 +1,10 @@
 package com.agungtriu.gxsales.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class LeadResponse(
 
     @field:SerializedName("address")
@@ -66,4 +69,4 @@ data class LeadResponse(
 
     @field:SerializedName("status")
     val status: DataItem? = null
-)
+) : Parcelable

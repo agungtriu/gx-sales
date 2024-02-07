@@ -29,7 +29,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     private fun setUpListener() {
         binding.btnLogin.setOnClickListener {
             if (!FormValidation.isEmailValid(binding.tietLoginEmail.text.toString())) {
-                binding.tietLoginEmail.error = getString(R.string.login_invalid_email)
+                binding.tietLoginEmail.error = getString(R.string.all_invalid_email)
             } else if (!FormValidation.isPasswordValid(binding.tietLoginPassword.text.toString())) {
                 binding.tietLoginPassword.error = getString(R.string.login_invalid_password)
             } else {

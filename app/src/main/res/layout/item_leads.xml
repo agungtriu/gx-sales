@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraint_itemleads"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp">
@@ -85,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:fontFamily="@font/inter_regular"
-        android:text="@string/login_email_hint"
+        android:text="@string/all_email_hint"
         android:textColor="#575C5F"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@id/tv_itemleads_status"
@@ -107,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:fontFamily="@font/inter_regular"
-        android:text="@string/login_email_hint"
+        android:text="@string/all_email_hint"
         android:textColor="#575C5F"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@id/tv_itemleads_status"

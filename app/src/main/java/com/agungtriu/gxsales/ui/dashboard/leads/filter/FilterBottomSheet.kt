@@ -2,6 +2,7 @@ package com.agungtriu.gxsales.ui.dashboard.leads.filter
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,9 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
 
     private val viewModel: FilterViewModel by viewModels()
 
+    private var first: Long? = null
+    private var second: Long? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,23 +61,37 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
 
     private fun setUpListener() {
         binding.btnBottomsheetfilterDate.setOnClickListener {
-            val datePicker = MaterialDatePicker
-                .Builder
-                .dateRangePicker()
-                .setTitleText("Select dates")
-                .setSelection(
-                    Pair(
-                        MaterialDatePicker.todayInUtcMilliseconds(),
-                        MaterialDatePicker.todayInUtcMilliseconds()
-                    )
-                ).build()
+            val datePicker =
+                if (viewModel.filter.fromDate != null && viewModel.filter.toDate != null) {
+                    MaterialDatePicker
+                        .Builder
+                        .dateRangePicker()
+                        .setTitleText("Select dates")
+                        .setSelection(
+                            Pair(
+                                viewModel.filter.fromDate?.plus(TimeUnit.HOURS.toMillis(7)),
+                                viewModel.filter.toDate?.minus(TimeUnit.HOURS.toMillis(16))
+                            )
+                        ).build()
+                } else {
+                    MaterialDatePicker
+                        .Builder
+                        .dateRangePicker()
+                        .setTitleText("Select dates")
+                        .build()
+
+                }
             datePicker.show(childFragmentManager, "DatePicker")
             datePicker.addOnPositiveButtonClickListener {
-                displayDate(datePicker.selection?.first, datePicker.selection?.second)
+                first = datePicker.selection?.first?.minus(TimeUnit.HOURS.toMillis(7))
+                second = datePicker.selection?.second?.plus(TimeUnit.HOURS.toMillis(16))
 
+                Log.d("FIRST", Utils.millisToDateTime(first!!))
+                Log.d("SECOND", Utils.millisToDateTime(second!!))
+                displayDate(first, second)
                 viewModel.filter = Filter(
-                    fromDate = datePicker.selection?.first?.minus(TimeUnit.HOURS.toMillis(7)),
-                    toDate = datePicker.selection?.second?.plus(TimeUnit.HOURS.toMillis(17)),
+                    fromDate = first,
+                    toDate = second,
                     status = viewModel.filter.status,
                     channel = viewModel.filter.channel,
                     media = viewModel.filter.channel,

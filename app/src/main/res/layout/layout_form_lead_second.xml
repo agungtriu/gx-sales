@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_formsecond"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_surface"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_formsecond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/menu_form_top"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/form_add_lead"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleLarge" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/sv_formsecond"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/divider_formsecond_bottom"
+        app:layout_constraintTop_toBottomOf="@id/appbar_formsecond">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/tv_formsecond_lead_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="@string/form_lead_information"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_formsecond_type_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/form_lead_type"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/color_form_title"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/tv_formsecond_lead_category" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_formsecond_type"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/tv_formsecond_type_title">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_formsecond_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="@string/form_hint_select_lead_type"
+                    android:inputType="none"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColorHint="#667085" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_formsecond_type"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/til_formsecond_type"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_type"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_type"
+                app:layout_constraintTop_toTopOf="@id/til_formsecond_type">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_shimmer" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/tv_formsecond_channel_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/form_lead_channel"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/color_form_title"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/til_formsecond_type" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_formsecond_channel"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/tv_formsecond_channel_title">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_formsecond_channel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="@string/form_hint_select_lead_channel"
+                    android:inputType="none"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColorHint="#667085" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_formsecond_channel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/til_formsecond_channel"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_channel"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_channel"
+                app:layout_constraintTop_toTopOf="@id/til_formsecond_channel">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_shimmer" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/tv_formsecond_media_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/form_lead_media"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/color_form_title"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_type"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_type"
+                app:layout_constraintTop_toBottomOf="@id/til_formsecond_channel" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_formsecond_media"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/tv_formsecond_media_title">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_formsecond_media"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="@string/form_hint_select_lead_media"
+                    android:inputType="none"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColorHint="#667085" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_formsecond_media"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/til_formsecond_media"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_media"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_media"
+                app:layout_constraintTop_toTopOf="@id/til_formsecond_media">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_shimmer" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/tv_formsecond_source_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/form_lead_source"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/color_form_title"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_type"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_type"
+                app:layout_constraintTop_toBottomOf="@id/til_formsecond_media" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_formsecond_source"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/tv_formsecond_source_title">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_formsecond_source"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="@string/form_hint_select_lead_source"
+                    android:inputType="none"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColorHint="#667085" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_formsecond_source"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/til_formsecond_source"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_source"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_source"
+                app:layout_constraintTop_toTopOf="@id/til_formsecond_source">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_shimmer" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/tv_formsecond_status_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/form_lead_status"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/color_form_title"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_type"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_type"
+                app:layout_constraintTop_toBottomOf="@id/til_formsecond_source" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_formsecond_status"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/tv_formsecond_status_title">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_formsecond_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="@string/form_hint_select_lead_status"
+                    android:inputType="none"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColorHint="#667085" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_formsecond_status"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/til_formsecond_status"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_status"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_status"
+                app:layout_constraintTop_toTopOf="@id/til_formsecond_status">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_shimmer" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/tv_formsecond_probability_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/form_lead_probability"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/color_form_title"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_type"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_type"
+                app:layout_constraintTop_toBottomOf="@id/til_formsecond_status" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_formsecond_probability"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/tv_formsecond_probability_title">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_formsecond_probability"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="@string/form_hint_select_lead_probability"
+                    android:inputType="none"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColorHint="#667085" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_formsecond_probability"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/til_formsecond_probability"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_probability"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_probability"
+                app:layout_constraintTop_toTopOf="@id/til_formsecond_probability">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_shimmer" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+            <TextView
+                android:id="@+id/tv_formsecond_note_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/form_notes"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/color_form_title"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/til_formsecond_probability" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_formsecond_note"
+                style="@style/Theme.GXSales.OutlinedRoundedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintStart_toStartOf="@id/tv_formsecond_lead_category"
+                app:layout_constraintTop_toBottomOf="@id/tv_formsecond_note_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_formsecond_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="top|start"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:lines="4"
+                    android:minLines="4"
+                    android:scrollbars="vertical"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColorHint="@color/color_edit_text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_formsecond_note"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/til_formsecond_note"
+                app:layout_constraintEnd_toEndOf="@id/til_formsecond_note"
+                app:layout_constraintStart_toStartOf="@id/til_formsecond_note"
+                app:layout_constraintTop_toTopOf="@id/til_formsecond_note">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_shimmer" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider_formsecond_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btn_formsecond_submit"
+        app:layout_constraintTop_toBottomOf="@id/sv_formsecond" />
+
+    <Button
+        android:id="@+id/btn_formsecond_previous"
+        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Previous"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/form_previous"
+        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_formsecond_submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_formsecond_bottom" />
+
+    <Button
+        android:id="@+id/btn_formsecond_submit"
+        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/form_submit"
+        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_formsecond_previous"
+        app:layout_constraintTop_toBottomOf="@id/divider_formsecond_bottom" />
+
+    <ProgressBar
+        android:id="@+id/pb_formsecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/btn_formsecond_submit"
+        app:layout_constraintEnd_toEndOf="@id/btn_formsecond_submit"
+        app:layout_constraintStart_toStartOf="@id/btn_formsecond_submit"
+        app:layout_constraintTop_toTopOf="@id/btn_formsecond_submit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
