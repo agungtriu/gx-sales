@@ -2,12 +2,10 @@ package com.agungtriu.gxsales.data
 
 import com.agungtriu.gxsales.data.remote.request.PostLeadRequest
 import com.agungtriu.gxsales.data.remote.request.UpdateStatusRequest
-import com.agungtriu.gxsales.data.remote.response.CreateLeadResponse
 import com.agungtriu.gxsales.data.remote.response.DataItem
 import com.agungtriu.gxsales.data.remote.response.DataStatus
 import com.agungtriu.gxsales.data.remote.response.DeleteLeadResponse
 import com.agungtriu.gxsales.data.remote.response.LeadResponse
-import com.agungtriu.gxsales.data.remote.response.UpdateLeadResponse
 import com.agungtriu.gxsales.utils.UIState
 import kotlinx.coroutines.flow.Flow
 
@@ -24,6 +22,7 @@ interface LeadsRepository {
         id: String,
         postLeadRequest: PostLeadRequest
     ): Flow<UIState<LeadResponse>>
+
     suspend fun patchStatus(
         id: Int,
         updateStatusRequest: UpdateStatusRequest

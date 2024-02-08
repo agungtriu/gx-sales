@@ -391,13 +391,13 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
             false,
             requireContext()
         )
-        val latitude = textInputToString(
+        textInputToString(
             binding.layoutAddForm.tietFormLatitude,
             binding.layoutAddForm.tvFormLatitudeTitle,
             false,
             requireContext()
         )
-        val longitude = textInputToString(
+        textInputToString(
             binding.layoutAddForm.tietFormLongitude,
             binding.layoutAddForm.tvFormLongitudeTitle,
             false,

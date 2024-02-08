@@ -29,9 +29,4 @@ object Extension {
             }
         }
     }
-
-    fun Long.toDisplay(): String {
-        val formatter = NumberFormat.getInstance(Locale.getDefault())
-        return formatter.format(this)
-    }
 }

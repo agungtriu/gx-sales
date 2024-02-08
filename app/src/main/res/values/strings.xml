@@ -83,4 +83,6 @@
     <string name="dialog_done">Done</string>
     <string name="dialog_desc_succes">Your process is success</string>
     <string name="dialog_title_success">Success</string>
+    <string name="location_back">Back</string>
+    <string name="dummy_number">#1245435</string>
 </resources>

@@ -4,6 +4,6 @@
     <item
         android:id="@+id/btn_form_add"
         android:icon="@drawable/ic_save_add"
-        android:title="Add Lead"
+        android:title="@string/form_add_lead"
         app:showAsAction="ifRoom" />
 </menu>

@@ -75,7 +75,7 @@
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:paddingHorizontal="48dp"
-        android:text="Back"
+        android:text="@string/location_back"
         android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
         android:textColor="#344054"
         app:layout_constraintBottom_toBottomOf="parent"
