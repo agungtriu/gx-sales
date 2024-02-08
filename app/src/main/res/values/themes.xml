@@ -9,9 +9,8 @@
     <style name="Theme.GXSales" parent="Base.Theme.GXSales" />
 
     <style name="Theme.GXSales.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_background</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="postSplashScreenTheme">@style/Theme.GXSales</item>
-        <item name="windowSplashScreenBackground">@color/color_surface</item>
     </style>
 
     <style name="Theme.GXSales.OutlinedRoundedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
