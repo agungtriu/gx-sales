@@ -72,7 +72,7 @@ class DashboardFragment :
         }
 
         binding.btnDashboard.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_addLeadFragment)
+            findNavController().navigate(R.id.action_dashboardFragment_to_form_navigation)
         }
     }
 }

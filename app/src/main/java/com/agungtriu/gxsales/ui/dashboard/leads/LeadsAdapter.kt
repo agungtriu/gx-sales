@@ -75,7 +75,7 @@ class LeadsAdapter(private val activity: Activity, private val viewModel: LeadsV
 
             binding.constraintItemleads.setOnClickListener {
                 (activity as MainActivity).navigate(
-                    R.id.action_global_to_addLeadFragment,
+                    R.id.action_global_to_form_navigation,
                     bundleOf(UPDATE_KEY to item.id)
                 )
             }
