@@ -17,6 +17,7 @@
             android:id="@+id/toolbar_leads"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_back"
             app:title="@string/dashboard_leads"
             app:titleCentered="true"
             app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleLarge" />

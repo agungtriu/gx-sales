@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.agungtriu.gxsales.base.BaseFragment
@@ -42,6 +43,9 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
     }
 
     private fun setUpListener() {
+        binding.toolbarLeads.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
         binding.btnLeadsFilter.setOnClickListener {
             filterBottomSheet = FilterBottomSheet()
             filterBottomSheet.arguments =

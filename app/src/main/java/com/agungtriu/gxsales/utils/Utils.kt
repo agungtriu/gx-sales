@@ -7,6 +7,8 @@ import android.view.inputmethod.InputMethodManager
 import com.agungtriu.gxsales.R
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
+import java.io.InputStreamReader
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -88,5 +90,16 @@ object Utils {
     fun closeSoftKeyboard(view: View, context: Context) {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun readTestResourceFile(fileName: String): String {
+        val inputStream = javaClass.classLoader?.getResourceAsStream(fileName)
+        val inputStreamReader = InputStreamReader(inputStream)
+        return inputStreamReader.readText()
+    }
+
+    inline fun <reified T> jsonToObject(fileName: String): T {
+        val response = readTestResourceFile(fileName)
+        return Gson().fromJson(response, T::class.java)
     }
 }

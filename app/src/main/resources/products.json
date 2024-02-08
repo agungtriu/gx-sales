@@ -1,0 +1,94 @@
+{
+  "products": [
+    {
+      "id": "c2cdaf80-2143-467e-8813-224b706d0955",
+      "name": "ASUS ROG Strix G17 G713RM-R736H6G-O - Eclipse Gray",
+      "price": 24499000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/4/6/0a49c399-cf6b-47f5-91c9-8cbd0b86462d.jpg",
+      "type": "Laptop",
+      "stock": 12,
+      "tax": 11
+    },
+    {
+      "id": "357b1369-0f37-4580-990a-945fbb068273",
+      "name": "ASUS ROG Flow Z13 GZ301ZE-I9R5A6T-O - Black",
+      "price": 28999000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2023/4/17/1c657fa7-a81c-434a-81c4-17e311aaa923.jpg",
+      "type": "Laptop",
+      "stock": 11,
+      "tax": 11
+    },
+    {
+      "id": "324cd8e6-a777-49a5-9df6-a1c524494755",
+      "name": "ASUS ROG Zephyrus M16 GU603ZE-I7R5G6T-O - Off Black",
+      "price": 27999000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/7/29/5fe741f5-fb6c-4433-b371-f395bc554425.jpg",
+      "type": "Laptop",
+      "stock": 11,
+      "tax": 11
+    },
+    {
+      "id": "b3b43ee1-8500-49be-b21b-3d7c5c0d9e75",
+      "name": "ASUS TUF Gaming A15 FA506IHRB-R565B6T-O11 - Graphite Black",
+      "price": 10499000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/1/fcc3db40-f8d8-4b83-9cc3-cb09bbdbdd91.jpg",
+      "type": "Laptop",
+      "stock": 60,
+      "tax": 11
+    },
+    {
+      "id": "fe46ffbc-3909-4b63-96eb-db7e610e46b0",
+      "name": "ASUS TUF GAMING F15 FX506HC-I535B6T-O11 - Graphite Black",
+      "price": 12499000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/3/12/2d39f498-a3f2-4a75-935a-0ab20fb38361.jpg",
+      "type": "Laptop",
+      "stock": 80,
+      "tax": 11
+    },
+    {
+      "id": "fceb09e4-8a02-4853-9d22-af5e3ac124cc",
+      "name": "ASUS VivoBook Flip TP1400KA-HD421 - Quiet Blue",
+      "price": 5869000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2023/4/17/923c4dba-b550-445c-9753-72cb5a2325e3.jpg",
+      "type": "Laptop",
+      "stock": 90,
+      "tax": 11
+    },
+    {
+      "id": "58ffee4c-c6ba-4629-9522-8dbc05c23896",
+      "name": "ASUS Vivobook Pro 14 OLED M3400QA-OLEDS752 - Solar Silver",
+      "price": 10499000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/9/21/33f09156-9229-42ce-9752-1236ae885683.jpg",
+      "type": "Laptop",
+      "stock": 100,
+      "tax": 11
+    },
+    {
+      "id": "fdd73272-b79a-4cbb-9e99-171676e054b1",
+      "name": "ASUS VivoBook Ultra 15 K513EA-OLED351 - Indie Black",
+      "price": 8299000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/3/11/e1e767ea-a9e4-4917-a9e1-20ab0c44469c.jpg",
+      "type": "Laptop",
+      "stock": 100,
+      "tax": 11
+    },
+    {
+      "id": "2e1b5975-2552-4e7c-9a16-6f9dde12da33",
+      "name": "Dell Gaming G15 Ryzen 7 5800 16GB 512ssd RTX3050Ti 4GB W10 15.6FHD - PROMO",
+      "price": 13849000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/12/22/4f9c0f65-31dd-4fe4-9212-1e936bbe63f0.jpg",
+      "type": "Laptop",
+      "stock": 13,
+      "tax": 11
+    },
+    {
+      "id": "2a085c5c-66e3-4c4f-8736-2a0b69ef3aae",
+      "name": "DELL XPS 13 PLUS 9320 OLED 4K TOUCH I7 1260P 16GB 1TBSSD W11 13.4 - PLATINUM STD",
+      "price": 20999000,
+      "image": "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/7/21/42244d54-0e70-4020-a286-a304996968f4.jpg",
+      "type": "Laptop",
+      "stock": 15,
+      "tax": 11
+    }
+  ]
+}

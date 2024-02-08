@@ -29,4 +29,15 @@ object Extension {
             }
         }
     }
+
+    private fun formatNumber(number: Long): String {
+        val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault())
+        numberFormat.isGroupingUsed = true
+        numberFormat.maximumFractionDigits = 3
+        return numberFormat.format(number)
+    }
+
+    fun Long.toCurrency(currency: String): String {
+        return currency.plus(" ").plus(formatNumber(this))
+    }
 }
