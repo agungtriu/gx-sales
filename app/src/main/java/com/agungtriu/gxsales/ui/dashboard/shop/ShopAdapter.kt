@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.agungtriu.gxsales.R
 import com.agungtriu.gxsales.databinding.ItemShopBinding
-import com.agungtriu.gxsales.utils.CURRENCY
+import com.agungtriu.gxsales.utils.Currency
 import com.agungtriu.gxsales.utils.Extension.toCurrency
 import com.bumptech.glide.Glide
 
@@ -30,11 +30,11 @@ class ShopAdapter : ListAdapter<Product, ShopAdapter.ViewHolder>(callback) {
                 .placeholder(R.drawable.ic_image)
                 .into(binding.ivItemshop)
             binding.tvItemshopName.text = item.name
-            binding.tvItemshopPrice.text = item.price.toCurrency(CURRENCY.RUPIAH.symbol)
+            binding.tvItemshopPrice.text = item.price.toCurrency(Currency.RUPIAH.symbol)
             binding.tvItemshopStock.text = item.stock.toString().plus(" Pcs")
             binding.tvItemshopType.text = item.type
             binding.tvItemshopTax.text =
-                (item.price / item.tax * 100).toCurrency(CURRENCY.RUPIAH.symbol)
+                (item.price * item.tax / 100).toCurrency(Currency.RUPIAH.symbol)
                     .plus(" (${item.tax}%)")
         }
     }

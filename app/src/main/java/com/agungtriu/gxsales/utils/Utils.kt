@@ -6,7 +6,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.agungtriu.gxsales.R
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import java.io.InputStreamReader
 import java.text.SimpleDateFormat
@@ -74,13 +73,13 @@ object Utils {
         .plus(" - ")
         .plus("v1.0.0")
 
-    fun startShimmerInput(shimmer: ShimmerFrameLayout, layout: TextInputLayout) {
+    fun startShimmer(shimmer: ShimmerFrameLayout, layout: View) {
         shimmer.startShimmer()
         shimmer.visibility = View.VISIBLE
         layout.visibility = View.INVISIBLE
     }
 
-    fun stopShimmerInput(shimmer: ShimmerFrameLayout, layout: TextInputLayout) {
+    fun stopShimmer(shimmer: ShimmerFrameLayout, layout: View) {
         shimmer.stopShimmer()
         shimmer.visibility = View.GONE
         layout.visibility = View.VISIBLE

@@ -107,12 +107,12 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
     private fun setUpObserver() {
         viewModel.resultBranchOffices.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is UIState.Loading -> Utils.startShimmerInput(
+                is UIState.Loading -> Utils.startShimmer(
                     binding.layoutAddForm.shimmerFormBranch,
                     binding.layoutAddForm.tilFormBranch
                 )
 
-                is UIState.Error -> Utils.stopShimmerInput(
+                is UIState.Error -> Utils.stopShimmer(
                     binding.layoutAddForm.shimmerFormBranch,
                     binding.layoutAddForm.tilFormBranch
                 )
@@ -120,7 +120,7 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
 
                 is UIState.Success -> {
                     viewModel.branchOffices = state.data
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormBranch,
                         binding.layoutAddForm.tilFormBranch
                     )
@@ -142,32 +142,32 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
         viewModel.resultLead.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is UIState.Loading -> {
-                    Utils.startShimmerInput(
+                    Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormBranch,
                         binding.layoutAddForm.tilFormBranch
                     )
-                    Utils.startShimmerInput(
+                    Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormName,
                         binding.layoutAddForm.tilFormName
                     )
-                    Utils.startShimmerInput(
+                    Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormEmail,
                         binding.layoutAddForm.tilFormEmail
                     )
-                    Utils.startShimmerInput(
+                    Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormPhone,
                         binding.layoutAddForm.tilFormPhone
                     )
-                    Utils.startShimmerInput(
+                    Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormAddress,
                         binding.layoutAddForm.tilFormAddress
                     )
-                    Utils.startShimmerInput(
+                    Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormLatitude,
                         binding.layoutAddForm.tilFormLatitude
                     )
 
-                    Utils.startShimmerInput(
+                    Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormLongitude,
                         binding.layoutAddForm.tilFormLongitude
                     )
@@ -176,39 +176,39 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                     binding.layoutAddForm.shimmerFormGender.visibility = View.VISIBLE
                     binding.layoutAddForm.rgFormGender.visibility = View.INVISIBLE
 
-                    Utils.startShimmerInput(
+                    Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormIdNumber,
                         binding.layoutAddForm.tilFormIdNumber
                     )
                 }
 
                 is UIState.Error -> {
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormBranch,
                         binding.layoutAddForm.tilFormBranch
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormName,
                         binding.layoutAddForm.tilFormName
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormEmail,
                         binding.layoutAddForm.tilFormEmail
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormPhone,
                         binding.layoutAddForm.tilFormPhone
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormAddress,
                         binding.layoutAddForm.tilFormAddress
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormLatitude,
                         binding.layoutAddForm.tilFormLatitude
                     )
 
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormLongitude,
                         binding.layoutAddForm.tilFormLongitude
                     )
@@ -217,7 +217,7 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                     binding.layoutAddForm.shimmerFormGender.visibility = View.GONE
                     binding.layoutAddForm.rgFormGender.visibility = View.VISIBLE
 
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormIdNumber,
                         binding.layoutAddForm.tilFormIdNumber
                     )
@@ -244,32 +244,32 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                     }
                     binding.layoutAddForm.tietFormIdNumber.setText(state.data.iDNumber)
 
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormBranch,
                         binding.layoutAddForm.tilFormBranch
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormName,
                         binding.layoutAddForm.tilFormName
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormEmail,
                         binding.layoutAddForm.tilFormEmail
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormPhone,
                         binding.layoutAddForm.tilFormPhone
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormAddress,
                         binding.layoutAddForm.tilFormAddress
                     )
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormLatitude,
                         binding.layoutAddForm.tilFormLatitude
                     )
 
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormLongitude,
                         binding.layoutAddForm.tilFormLongitude
                     )
@@ -278,7 +278,7 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                     binding.layoutAddForm.shimmerFormGender.visibility = View.GONE
                     binding.layoutAddForm.rgFormGender.visibility = View.VISIBLE
 
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormIdNumber,
                         binding.layoutAddForm.tilFormIdNumber
                     )

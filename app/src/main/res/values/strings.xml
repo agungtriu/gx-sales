@@ -87,4 +87,6 @@
     <string name="dummy_number">#1245435</string>
     <string name="shop_search_hint">Search...</string>
     <string name="error_data_not_found">Data Not Found</string>
+    <string name="shop_type">Type :</string>
+    <string name="shop_stock">Stock :</string>
 </resources>
