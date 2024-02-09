@@ -19,7 +19,7 @@
             app:navigationIcon="@drawable/ic_back"
             app:title="@string/form_add_lead"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleLarge" />
+            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleMedium.SemiBold" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                     android:hint="@string/hint_select_branch_office"
                     android:inputType="none"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="#667085" />
+                    android:textColorHint="@color/color_all_text_button" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,7 +131,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_form_name"
-                style="@style/Theme.GXSales.OutlinedRoundedBox"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -150,7 +150,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="textPersonName"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="@color/color_edit_text" />
+                    android:textColorHint="@color/color_all_edit_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,7 +185,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_form_email"
-                style="@style/Theme.GXSales.OutlinedRoundedBox"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -204,7 +204,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="@color/color_edit_text" />
+                    android:textColorHint="@color/color_all_edit_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -242,7 +242,7 @@
                 style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.Start.ExposedDropdownMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                app:boxBackgroundColor="#F9C900"
+                app:boxBackgroundColor="@color/color_all_button_yellow"
                 app:hintEnabled="false"
                 app:layout_constraintBottom_toBottomOf="@id/til_form_phone"
                 app:layout_constraintEnd_toStartOf="@id/til_form_phone"
@@ -256,7 +256,7 @@
                     android:fontFamily="@font/inter_regular"
                     android:inputType="none"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="#667085" />
+                    android:textColorHint="@color/color_all_text_button" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -279,13 +279,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_form_phone"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.End"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="0dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="0dp"
                 app:errorEnabled="false"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="@id/tv_form_branch_category"
@@ -301,7 +298,7 @@
                     android:imeOptions="actionDone"
                     android:inputType="phone"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="@color/color_edit_text" />
+                    android:textColorHint="@color/color_all_edit_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -323,7 +320,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_form_select_location"
-                style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Login"
+                style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Yellow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -331,10 +328,10 @@
                 android:gravity="center"
                 android:text="@string/form_select_location"
                 android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
-                app:icon="@drawable/ic_location"
+                app:icon="@drawable/ic_location_active"
                 app:iconGravity="textStart"
                 app:iconPadding="8dp"
-                app:iconTint="#292D32"
+                app:iconTint="@color/color_form_icon"
                 app:layout_constraintEnd_toEndOf="@id/tv_form_branch_category"
                 app:layout_constraintStart_toStartOf="@id/tv_form_branch_category"
                 app:layout_constraintTop_toBottomOf="@id/til_form_phone" />
@@ -354,7 +351,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_form_address"
-                style="@style/Theme.GXSales.OutlinedRoundedBox"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -378,7 +375,7 @@
                     android:minLines="4"
                     android:scrollbars="vertical"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="@color/color_edit_text" />
+                    android:textColorHint="@color/color_all_edit_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -427,7 +424,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_form_latitude"
-                style="@style/Theme.GXSales.OutlinedRoundedBox"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -446,13 +443,13 @@
                     android:hint="@string/form_latitude_hint"
                     android:imeOptions="actionNext"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="@color/color_edit_text" />
+                    android:textColorHint="@color/color_all_edit_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_form_longitude"
-                style="@style/Theme.GXSales.OutlinedRoundedBox"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -471,7 +468,7 @@
                     android:hint="@string/form_longitude_hint"
                     android:imeOptions="actionNext"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="@color/color_edit_text" />
+                    android:textColorHint="@color/color_all_edit_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -599,7 +596,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_form_id_number"
-                style="@style/Theme.GXSales.OutlinedRoundedBox"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -618,7 +615,7 @@
                     android:imeOptions="actionDone"
                     android:inputType="number"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="@color/color_edit_text" />
+                    android:textColorHint="@color/color_all_edit_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -722,7 +719,7 @@
                     android:layout_marginHorizontal="1dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/all_rectangle_rounded_top_4dp"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/color_surface"
                     app:layout_constraintBottom_toTopOf="@id/view_form_add_photo_id_display_bottom"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -749,7 +746,7 @@
                         android:lines="1"
                         android:text="@string/form_hint_file_upload_jpg"
                         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                        android:textColor="#333638"
+                        android:textColor="@color/color_account_item"
                         app:layout_constraintBottom_toTopOf="@id/tv_form_add_photo_id_display_size"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/iv_form_add_photo_id_display"
@@ -766,7 +763,7 @@
                         android:lines="1"
                         android:text="@string/form_hint_2000_kb"
                         android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                        android:textColor="#959A9E"
+                        android:textColor="@color/color_form_size"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@id/tv_form_add_photo_id_display_filename"
                         app:layout_constraintStart_toStartOf="@id/tv_form_add_photo_id_display_filename"
@@ -778,7 +775,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginHorizontal="1dp"
-                    android:background="#F2F2F3"
+                    android:background="@color/color_all_divider_light"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view_form_add_photo_id_display_top" />
 
@@ -856,7 +853,7 @@
 
     <Button
         android:id="@+id/btn_form_next"
-        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Login"
+        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Yellow"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

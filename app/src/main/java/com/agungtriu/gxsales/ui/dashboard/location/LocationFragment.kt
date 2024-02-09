@@ -100,7 +100,8 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(FragmentLocationB
                             LatLng(
                                 latLng.first,
                                 latLng.second
-                            ), 15f
+                            ),
+                            15f
                         )
                     )
                 }
@@ -134,7 +135,8 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(FragmentLocationB
                                 LatLng(
                                     location.latitude,
                                     location.longitude
-                                ), 15f
+                                ),
+                                15f
                             )
                         )
                     }

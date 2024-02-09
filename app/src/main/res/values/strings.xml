@@ -89,4 +89,7 @@
     <string name="error_data_not_found">Data Not Found</string>
     <string name="shop_type">Type :</string>
     <string name="shop_stock">Stock :</string>
+    <string name="itemdashboard_hint">15</string>
+    <string name="itemdashboard_title_hint">Total All Leads</string>
+    <string name="itemshop_tax_title">w/Tax:</string>
 </resources>

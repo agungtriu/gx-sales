@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.agungtriu.gxsales.R
+import com.agungtriu.gxsales.data.remote.response.Product
 import com.agungtriu.gxsales.databinding.ItemShopBinding
 import com.agungtriu.gxsales.utils.Currency
 import com.agungtriu.gxsales.utils.Extension.toCurrency
@@ -46,7 +47,6 @@ class ShopAdapter : ListAdapter<Product, ShopAdapter.ViewHolder>(callback) {
 
             override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean =
                 oldItem.id == newItem.id
-
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.agungtriu.gxsales.ui.dashboard.addlead
+package com.agungtriu.gxsales.ui.dashboard.formlead
 
 import android.net.Uri
 import android.os.Parcelable

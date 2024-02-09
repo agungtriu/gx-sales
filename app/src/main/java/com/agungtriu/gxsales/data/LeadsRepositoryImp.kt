@@ -9,7 +9,6 @@ import com.agungtriu.gxsales.data.remote.response.DataStatus
 import com.agungtriu.gxsales.data.remote.response.DeleteLeadResponse
 import com.agungtriu.gxsales.data.remote.response.LeadResponse
 import com.agungtriu.gxsales.data.remote.response.PhoneCodeResponse
-import com.agungtriu.gxsales.ui.dashboard.shop.Products
 import com.agungtriu.gxsales.utils.Extension.toErrorResponse
 import com.agungtriu.gxsales.utils.UIState
 import com.agungtriu.gxsales.utils.Utils
@@ -66,8 +65,8 @@ class LeadsRepositoryImp @Inject constructor(private val apiService: ApiService)
                     companyName = postLeadRequest.companyName,
                     generalNotes = postLeadRequest.generalNotes,
                     gender = postLeadRequest.gender,
-                    IDNumber = postLeadRequest.idNumber,
-                    IDNumberPhoto = postLeadRequest.idNumberPhoto,
+                    idNumber = postLeadRequest.idNumber,
+                    idNumberPhoto = postLeadRequest.idNumberPhoto,
                     branchOfficeId = postLeadRequest.branchOfficeId,
                     probabilityId = postLeadRequest.probabilityId,
                     typeId = postLeadRequest.typeId,
@@ -103,8 +102,8 @@ class LeadsRepositoryImp @Inject constructor(private val apiService: ApiService)
                 companyName = postLeadRequest.companyName,
                 generalNotes = postLeadRequest.generalNotes,
                 gender = postLeadRequest.gender,
-                IDNumber = postLeadRequest.idNumber,
-                IDNumberPhoto = postLeadRequest.idNumberPhoto,
+                idNumber = postLeadRequest.idNumber,
+                idNumberPhoto = postLeadRequest.idNumberPhoto,
                 branchOfficeId = postLeadRequest.branchOfficeId,
                 probabilityId = postLeadRequest.probabilityId,
                 typeId = postLeadRequest.typeId,
@@ -114,7 +113,6 @@ class LeadsRepositoryImp @Inject constructor(private val apiService: ApiService)
             )
             if (result.data?.id != null) {
                 emit(UIState.Success(result.data))
-//                patchStatus(result.data.id, UpdateStatusRequest(postLeadRequest.statusId))
             } else {
                 throw IllegalArgumentException("Failed to update lead")
             }
@@ -251,5 +249,4 @@ class LeadsRepositoryImp @Inject constructor(private val apiService: ApiService)
             emit(UIState.Error(t.toErrorResponse()))
         }
     }
-
 }

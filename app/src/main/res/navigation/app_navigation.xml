@@ -45,7 +45,7 @@
             tools:layout="@layout/fragment_location" />
         <fragment
             android:id="@+id/addLeadFragment"
-            android:name="com.agungtriu.gxsales.ui.dashboard.addlead.AddLeadFragment"
+            android:name="com.agungtriu.gxsales.ui.dashboard.formlead.FormLeadFragment"
             android:label="fragment_add_lead"
             tools:layout="@layout/fragment_add_lead">
             <action
@@ -57,7 +57,7 @@
         </fragment>
         <fragment
             android:id="@+id/addLeadSubmitFragment"
-            android:name="com.agungtriu.gxsales.ui.dashboard.addleadsubmit.AddLeadSubmitFragment"
+            android:name="com.agungtriu.gxsales.ui.dashboard.formleadsubmit.FormLeadSubmitFragment"
             android:label="fragment_add_lead_submit"
             tools:layout="@layout/fragment_add_lead_submit">
             <action

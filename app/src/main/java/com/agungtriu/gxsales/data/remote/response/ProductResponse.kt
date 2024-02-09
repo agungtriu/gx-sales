@@ -1,8 +1,8 @@
-package com.agungtriu.gxsales.ui.dashboard.shop
+package com.agungtriu.gxsales.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class Products(
+data class ProductResponse(
 
     @field:SerializedName("products")
     val products: List<Product>? = null

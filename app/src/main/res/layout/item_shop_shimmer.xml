@@ -4,7 +4,7 @@
     android:id="@+id/constraint_itemshop"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp">
+    android:layout_marginHorizontal="24dp">
 
     <ImageView
         android:id="@+id/iv_itemshop"

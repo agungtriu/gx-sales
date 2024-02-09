@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.agungtriu.gxsales.data.ShopRepository
+import com.agungtriu.gxsales.data.remote.response.Product
 import com.agungtriu.gxsales.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -25,7 +26,6 @@ class ShopViewModel @Inject constructor(private val shopRepository: ShopReposito
             shopRepository.getProducts().collect {
                 _resultProducts.value = it
             }
-
         }
     }
 }

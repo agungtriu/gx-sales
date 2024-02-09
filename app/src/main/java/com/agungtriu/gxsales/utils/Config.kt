@@ -6,5 +6,4 @@ object Config {
     val PRELOGIN_ENDPOINT = listOf(
         "${API_BASE_URL}login"
     )
-
 }

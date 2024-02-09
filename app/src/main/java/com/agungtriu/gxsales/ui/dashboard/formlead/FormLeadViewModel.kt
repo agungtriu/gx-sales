@@ -1,4 +1,4 @@
-package com.agungtriu.gxsales.ui.dashboard.addlead
+package com.agungtriu.gxsales.ui.dashboard.formlead
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,7 +17,7 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class AddLeadViewModel @Inject constructor(
+class FormLeadViewModel @Inject constructor(
     private val leadsRepository: LeadsRepository,
     savedStateHandle: SavedStateHandle
 ) :
@@ -32,13 +32,12 @@ class AddLeadViewModel @Inject constructor(
     private var _resultPhoneCodes = MutableLiveData<UIState<List<CountriesItem>>>()
     val resultPhoneCodes: LiveData<UIState<List<CountriesItem>>> get() = _resultPhoneCodes
 
-
     private var _resultLocation = MutableLiveData<Location>()
     val resultLocation: LiveData<Location> get() = _resultLocation
     var dataLocation: Location = Location()
     var lead: LeadResponse? = null
 
-    var id: Int? = savedStateHandle[AddLeadFragment.UPDATE_KEY]
+    var id: Int? = savedStateHandle[FormLeadFragment.UPDATE_KEY]
 
     var branchOffices: List<DataItem>? = null
 
@@ -77,5 +76,4 @@ class AddLeadViewModel @Inject constructor(
     fun setLocation(location: Location) {
         _resultLocation.value = location
     }
-
 }

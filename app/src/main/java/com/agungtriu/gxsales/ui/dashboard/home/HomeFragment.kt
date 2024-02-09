@@ -2,18 +2,16 @@ package com.agungtriu.gxsales.ui.dashboard.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.agungtriu.gxsales.base.BaseFragment
 import com.agungtriu.gxsales.data.remote.response.StatusesItem
 import com.agungtriu.gxsales.databinding.FragmentHomeBinding
+import com.agungtriu.gxsales.utils.Date.beforeDayMillis
+import com.agungtriu.gxsales.utils.Date.endOfDayMillis
+import com.agungtriu.gxsales.utils.Date.millisToDisplayDate
 import com.agungtriu.gxsales.utils.UIState
-import com.agungtriu.gxsales.utils.Utils
-import com.agungtriu.gxsales.utils.Utils.beforeDayMillis
-import com.agungtriu.gxsales.utils.Utils.endOfDayMillis
-import com.agungtriu.gxsales.utils.Utils.millisToDisplayDate
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         adapter = HomeAdapter()
         binding.rvHome.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvHome.adapter = adapter
-        Log.d("BEFORE", Utils.millisToDateTime(viewModel.fromMillis))
-        Log.d("TO", Utils.millisToDateTime(viewModel.toMillis))
+
         binding.btnHomeDate.text = millisToDisplayDate(viewModel.fromMillis)
             .plus(" - ")
             .plus(millisToDisplayDate(viewModel.toMillis))
@@ -105,8 +102,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
         }
-
-
     }
 
     private fun startShimmerProfile() {
@@ -115,7 +110,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.tvHomeName.visibility = View.INVISIBLE
         binding.tvHomeEmail.visibility = View.INVISIBLE
     }
-
 
     private fun stopShimmerProfile() {
         binding.shimmerHomeProfile.stopShimmer()

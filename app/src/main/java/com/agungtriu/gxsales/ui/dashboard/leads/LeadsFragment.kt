@@ -16,8 +16,8 @@ import com.agungtriu.gxsales.ui.dashboard.leads.filter.Filter
 import com.agungtriu.gxsales.ui.dashboard.leads.filter.FilterBottomSheet
 import com.agungtriu.gxsales.ui.dashboard.leads.filter.FilterBottomSheet.Companion.FILTER_KEY
 import com.agungtriu.gxsales.ui.dashboard.leads.filter.FilterBottomSheet.Companion.RESULT_FILTER_KEY
+import com.agungtriu.gxsales.utils.Date.dateToMillis
 import com.agungtriu.gxsales.utils.UIState
-import com.agungtriu.gxsales.utils.Utils
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -105,17 +105,17 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
         var result = list
         if (viewModel.filterSearch.search != null) {
             result = list.filter {
-                it.fullName != null
-                        && it.fullName.lowercase()
-                    .contains((viewModel.filterSearch.search ?: "").lowercase())
+                it.fullName != null &&
+                    it.fullName.lowercase()
+                        .contains((viewModel.filterSearch.search ?: "").lowercase())
             }
         }
 
         if (viewModel.filterSearch.fromDate != null && viewModel.filterSearch.toDate != null) {
             result = result.filter {
-                it.createdAt != null
-                        && viewModel.filterSearch.fromDate!! <= Utils.dateToMillis(it.createdAt)
-                        && viewModel.filterSearch.toDate!! >= Utils.dateToMillis(it.createdAt)
+                it.createdAt != null &&
+                    viewModel.filterSearch.fromDate!! <= dateToMillis(it.createdAt) &&
+                    viewModel.filterSearch.toDate!! >= dateToMillis(it.createdAt)
             }
         }
 
@@ -182,7 +182,6 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
         binding.shimmerLeads.visibility = View.VISIBLE
         binding.shimmerLeads.startShimmer()
     }
-
 
     private fun stopShimmer() {
         binding.rvLeads.visibility = View.VISIBLE

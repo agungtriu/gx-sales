@@ -13,19 +13,10 @@
         <item name="postSplashScreenTheme">@style/Theme.GXSales</item>
     </style>
 
-    <style name="Theme.GXSales.OutlinedRoundedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <item name="shapeAppearanceOverlay">
-            @style/ShapeAppearanceOverlay.GXSales.Rounded
-        </item>
-        <item name="boxStrokeColor">#D0D5DD</item>
-        <item name="backgroundColor">@color/white</item>
-    </style>
-
     <style name="ShapeAppearanceOverlay.GXSales.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
-
 
     <style name="ShapeAppearanceOverlay.GXSales.Rounded.Start" parent="">
         <item name="cornerFamily">rounded</item>
@@ -35,37 +26,69 @@
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.GXSales.Rounded.Top" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.GXSales.Rounded.End" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+    </style>
+
+    <style name="Theme.GXSales.TextInputLayout.OutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.GXSales.Rounded
+        </item>
+        <item name="boxStrokeColor">@color/color_all_border_edit_text</item>
+        <item name="backgroundColor">@color/white</item>
+    </style>
+
     <style name="Theme.GXSales.Button.OutlinedRoundedBox" parent="Widget.Material3.Button.OutlinedButton">
         <item name="shapeAppearanceOverlay">
             @style/ShapeAppearanceOverlay.GXSales.Rounded
         </item>
     </style>
 
-    <style name="Theme.GXSales.OutlinedRoundedBox.Search" parent="">
+    <style name="Theme.GXSales.TextInputLayout.OutlinedBox.Search" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="shapeAppearanceOverlay">
             @style/ShapeAppearanceOverlay.GXSales.Rounded
         </item>
+        <item name="boxStrokeColor">#F6F6F6</item>
+        <item name="backgroundColor">#F8F8F8</item>
     </style>
 
-    <style name="Theme.GXSales.Button.OutlinedRoundedBox.Date" parent="Theme.GXSales.Button.OutlinedRoundedBox">
+    <style name="Theme.GXSales.Button.OutlinedRoundedBox.White" parent="Theme.GXSales.Button.OutlinedRoundedBox">
         <item name="boxStrokeColor">#ACADC1</item>
         <item name="backgroundColor">?attr/colorSurface</item>
     </style>
 
-    <style name="Theme.GXSales.Button.OutlinedRoundedBox.Login" parent="Theme.GXSales.Button.OutlinedRoundedBox">
-        <item name="backgroundTint">#F9C900</item>
-        <item name="strokeColor">#F9C900</item>
-        <item name="android:textColor">#161200</item>
-        <item name="drawableTint">#161200</item>
+    <style name="Theme.GXSales.Button.OutlinedRoundedBox.Yellow" parent="Theme.GXSales.Button.OutlinedRoundedBox">
+        <item name="backgroundTint">@color/color_all_button_yellow</item>
+        <item name="strokeColor">@color/color_all_button_yellow</item>
+        <item name="android:textColor">#1C1C1C</item>
+        <item name="drawableTint">#292D32</item>
+        <item name="android:textAppearance">@style/TextAppearance.Material3.TitleSmall</item>
         <item name="fontFamily">@font/inter_medium</item>
     </style>
 
 
     <style name="Theme.GXSales.Button.OutlinedRoundedBox.Logout" parent="Theme.GXSales.Button.OutlinedRoundedBox">
         <item name="backgroundTint">@color/white</item>
-        <item name="strokeColor">#DE5263</item>
-        <item name="android:textColor">#DE5263</item>
-        <item name="drawableTint">#DE5263</item>
+        <item name="strokeColor">@color/color_bottomsheetaccount_button_logout</item>
+        <item name="android:textColor">@color/color_bottomsheetaccount_button_logout</item>
+        <item name="drawableTint">@color/color_bottomsheetaccount_button_logout</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="icon">@drawable/ic_logout</item>
+        <item name="iconGravity">textEnd</item>
+        <item name="iconTint">@color/color_bottomsheetaccount_button_logout</item>
+        <item name="iconPadding">8dp</item>
     </style>
 
     <style name="Theme.GXSales.Button.OutlinedRoundedBox.Reset" parent="Theme.GXSales.Button.OutlinedRoundedBox">
@@ -94,8 +117,24 @@
         </item>
     </style>
 
+    <style name="Theme.GXSales.TextInputLayout.OutlinedRoundedBox.End" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.GXSales.Rounded.End
+        </item>
+    </style>
+
     <style name="Theme.GXSales.TextAppearance.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
         <item name="fontFamily">@font/inter_semi_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Theme.GXSales.TextAppearance.TitleMedium.Bold" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Theme.GXSales.TextAppearance.TitleMedium.SemiBold" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/inter_bold</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
@@ -109,8 +148,8 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="animation">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    <style name="Theme.GXSales.TextAppearance.BottomNav" parent="">
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

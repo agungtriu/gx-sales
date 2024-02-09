@@ -6,15 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginFragment">
 
+    <View
+        android:id="@+id/v_login_top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/iv_login"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/iv_login"
-        android:layout_width="133dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_splashscreen"
+        app:layout_constraintBottom_toTopOf="@id/tv_login_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/v_login_top" />
 
     <TextView
         android:id="@+id/tv_login_email"
@@ -25,16 +32,18 @@
         android:fontFamily="@font/inter_medium"
         android:text="@string/all_email"
         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        app:layout_constraintBottom_toTopOf="@id/til_login_email"
         app:layout_constraintTop_toBottomOf="@id/iv_login" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_login_email"
-        style="@style/Theme.GXSales.OutlinedRoundedBox"
+        style="@style/Theme.GXSales.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        app:boxStrokeColor="@color/color_edit_text_border"
+        android:layout_marginTop="6dp"
         app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/tv_login_password"
         app:layout_constraintTop_toBottomOf="@id/tv_login_email">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -48,7 +57,7 @@
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
             android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            android:textColorHint="@color/color_edit_text" />
+            android:textColorHint="@color/color_all_edit_text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,18 +70,21 @@
         android:fontFamily="@font/inter_medium"
         android:text="@string/login_password"
         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        app:layout_constraintBottom_toTopOf="@id/til_login_password"
         app:layout_constraintTop_toBottomOf="@id/til_login_email" />
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_login_password"
-        style="@style/Theme.GXSales.OutlinedRoundedBox"
+        style="@style/Theme.GXSales.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        app:boxStrokeColor="@color/color_edit_text_border"
+        android:layout_marginTop="6dp"
+        app:boxStrokeColor="@color/color_all_border_edit_text"
         app:endIconMode="password_toggle"
         app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_login"
         app:layout_constraintTop_toBottomOf="@id/tv_login_password">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -86,19 +98,19 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            android:textColorHint="@color/color_edit_text" />
+            android:textColorHint="@color/color_all_edit_text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_login"
-        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Login"
+        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Yellow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:drawableEnd="@drawable/ic_login"
         android:text="@string/login_sign_in"
-        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+        app:layout_constraintBottom_toTopOf="@id/v_login_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_login_password" />
@@ -113,6 +125,13 @@
         app:layout_constraintStart_toStartOf="@id/btn_login"
         app:layout_constraintTop_toTopOf="@id/btn_login" />
 
+    <View
+        android:id="@+id/v_login_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_login_copyright"
+        app:layout_constraintTop_toBottomOf="@id/btn_login" />
+
     <TextView
         android:id="@+id/tv_login_copyright"
         android:layout_width="match_parent"
@@ -123,7 +142,8 @@
         android:text="@string/all_copyright"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+        android:textColor="@color/color_all_text_copyright"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_login"
+        app:layout_constraintTop_toBottomOf="@id/v_login_bottom"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

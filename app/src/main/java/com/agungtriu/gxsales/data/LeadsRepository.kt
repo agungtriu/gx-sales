@@ -10,7 +10,6 @@ import com.agungtriu.gxsales.data.remote.response.LeadResponse
 import com.agungtriu.gxsales.utils.UIState
 import kotlinx.coroutines.flow.Flow
 
-
 interface LeadsRepository {
     suspend fun getLeads(): Flow<UIState<List<LeadResponse>>>
     suspend fun getLead(id: Int): Flow<UIState<LeadResponse>>

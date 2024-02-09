@@ -1,7 +1,7 @@
 package com.agungtriu.gxsales.data
 
-import com.agungtriu.gxsales.ui.dashboard.shop.Product
-import com.agungtriu.gxsales.ui.dashboard.shop.Products
+import com.agungtriu.gxsales.data.remote.response.Product
+import com.agungtriu.gxsales.data.remote.response.ProductResponse
 import com.agungtriu.gxsales.utils.Extension.toErrorResponse
 import com.agungtriu.gxsales.utils.UIState
 import com.agungtriu.gxsales.utils.Utils
@@ -13,7 +13,7 @@ class ShopRepositoryImp @Inject constructor() : ShopRepository {
     override suspend fun getProducts(): Flow<UIState<List<Product>>> = flow {
         emit(UIState.Loading)
         try {
-            val result = Utils.jsonToObject<Products>("products.json")
+            val result = Utils.jsonToObject<ProductResponse>("products.json")
             if (result.products != null) {
                 emit(UIState.Success(result.products))
             } else {

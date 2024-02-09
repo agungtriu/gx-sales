@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_home_selected"
+        android:icon="@drawable/home_selector"
         android:title="@string/dashboard_home" />
     <item
         android:id="@+id/leadsFragment"
-        android:icon="@drawable/ic_user_tag"
+        android:icon="@drawable/leads_selector"
         android:title="@string/dashboard_leads" />
     <item
         android:id="@+id/placeholder"
@@ -14,10 +14,10 @@
         android:title="" />
     <item
         android:id="@+id/shopFragment"
-        android:icon="@drawable/ic_shopping_bag_selected"
+        android:icon="@drawable/bag_selector"
         android:title="@string/dashboard_shop" />
     <item
         android:id="@+id/accountFragment"
-        android:icon="@drawable/ic_location"
+        android:icon="@drawable/location_selector"
         android:title="@string/dashboard_account" />
 </menu>

@@ -20,17 +20,16 @@
             app:navigationIcon="@drawable/ic_back"
             app:title="@string/dashboard_leads"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleLarge" />
+            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleMedium.SemiBold" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_leads_search"
-        style="@style/Theme.GXSales.OutlinedRoundedBox.Search"
+        style="@style/Theme.GXSales.TextInputLayout.OutlinedBox.Search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        app:boxStrokeColor="@color/color_edit_text_border"
         app:hintEnabled="false"
         app:layout_constraintEnd_toStartOf="@id/btn_leads_filter"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,10 +43,10 @@
             android:drawablePadding="8dp"
             android:fontFamily="@font/inter_regular"
             android:hint="@string/hint_name"
-            android:imeOptions="actionDone"
+            android:imeOptions="actionSearch"
             android:inputType="textPersonName"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            android:textColorHint="@color/color_edit_text" />
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:textColorHint="@color/color_all_edit_text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,14 +56,14 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
         android:drawableLeft="@drawable/ic_filter"
         android:fontFamily="@font/inter_medium"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/leads_filter"
         android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-        android:textColor="#0C0F14"
+        android:textColor="@color/color_leads_text_filter"
         app:layout_constraintBottom_toBottomOf="@id/til_leads_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/til_leads_search"
@@ -75,6 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@color/color_all_divider_light"
         app:layout_constraintTop_toBottomOf="@id/til_leads_search" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -110,4 +110,12 @@
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <include
+        android:id="@+id/layout_leads_error"
+        layout="@layout/layout_error"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_leads_top" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_location_search"
-        style="@style/Theme.GXSales.OutlinedRoundedBox.Search"
+        style="@style/Theme.GXSales.TextInputLayout.OutlinedBox.Search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -39,7 +39,7 @@
             android:imeOptions="actionSearch"
             android:inputType="textPersonName"
             android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            android:textColorHint="@color/color_edit_text" />
+            android:textColorHint="@color/color_all_edit_text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +85,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_location_select"
-        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Login"
+        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Yellow"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -1,4 +1,4 @@
-package com.agungtriu.gxsales.ui.dashboard.addleadsubmit
+package com.agungtriu.gxsales.ui.dashboard.formleadsubmit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,16 +11,16 @@ import com.agungtriu.gxsales.data.remote.request.UpdateStatusRequest
 import com.agungtriu.gxsales.data.remote.response.DataItem
 import com.agungtriu.gxsales.data.remote.response.DataStatus
 import com.agungtriu.gxsales.data.remote.response.LeadResponse
-import com.agungtriu.gxsales.ui.dashboard.addlead.AddLeadFragment
-import com.agungtriu.gxsales.ui.dashboard.addlead.AddLeadFragment.Companion.FORM_KEY
-import com.agungtriu.gxsales.ui.dashboard.addlead.Form
+import com.agungtriu.gxsales.ui.dashboard.formlead.Form
+import com.agungtriu.gxsales.ui.dashboard.formlead.FormLeadFragment
+import com.agungtriu.gxsales.ui.dashboard.formlead.FormLeadFragment.Companion.FORM_KEY
 import com.agungtriu.gxsales.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddLeadSubmitViewModel @Inject constructor(
+class FormLeadSubmitViewModel @Inject constructor(
     private val leadsRepository: LeadsRepository,
     savedStateHandle: SavedStateHandle
 ) :
@@ -45,7 +45,7 @@ class AddLeadSubmitViewModel @Inject constructor(
     var probabilities: List<DataItem>? = null
 
     var form: Form? = savedStateHandle[FORM_KEY]
-    var lead: LeadResponse? = savedStateHandle[AddLeadFragment.UPDATE_KEY]
+    var lead: LeadResponse? = savedStateHandle[FormLeadFragment.UPDATE_KEY]
 
     init {
         getTypes()
@@ -79,7 +79,6 @@ class AddLeadSubmitViewModel @Inject constructor(
             }
         }
     }
-
 
     private fun getSources() {
         viewModelScope.launch {

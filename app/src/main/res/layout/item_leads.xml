@@ -4,7 +4,7 @@
     android:id="@+id/constraint_itemleads"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp">
+    android:layout_marginHorizontal="24dp">
 
     <TextView
         android:id="@+id/tv_itemleads_name"
@@ -14,7 +14,7 @@
         android:fontFamily="@font/inter_medium"
         android:text="@string/dummy_name"
         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-        android:textColor="#2D2D2D"
+        android:textColor="@color/color_all_title"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_marginTop="6dp"
         android:fontFamily="@font/inter_semi_bold"
         android:text="@string/dummy_number"
-        android:textColor="#F9C900"
+        android:textColor="@color/yellow"
         android:textSize="10sp"
         app:layout_constraintTop_toBottomOf="@id/tv_itemleads_name" />
 
@@ -35,7 +35,7 @@
         android:layout_marginTop="6dp"
         android:fontFamily="@font/inter_regular"
         android:text="@string/form_address_hint"
-        android:textColor="#575C5F"
+        android:textColor="@color/color_account_title"
         android:textSize="10sp"
         app:layout_constraintTop_toBottomOf="@id/tv_itemleads_number" />
 
@@ -87,7 +87,7 @@
         android:layout_marginStart="5dp"
         android:fontFamily="@font/inter_regular"
         android:text="@string/all_email_hint"
-        android:textColor="#575C5F"
+        android:textColor="@color/color_account_title"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@id/tv_itemleads_status"
         app:layout_constraintStart_toEndOf="@id/divider_itemleads_first"
@@ -109,7 +109,7 @@
         android:layout_marginStart="5dp"
         android:fontFamily="@font/inter_regular"
         android:text="@string/all_email_hint"
-        android:textColor="#575C5F"
+        android:textColor="@color/color_account_title"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@id/tv_itemleads_status"
         app:layout_constraintEnd_toEndOf="parent"

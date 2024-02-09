@@ -1,4 +1,4 @@
-package com.agungtriu.gxsales.ui.dashboard.addleadsubmit
+package com.agungtriu.gxsales.ui.dashboard.formleadsubmit
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,9 +26,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MultipartBody
 
 @AndroidEntryPoint
-class AddLeadSubmitFragment :
+class FormLeadSubmitFragment :
     BaseFragment<FragmentAddLeadSubmitBinding>(FragmentAddLeadSubmitBinding::inflate) {
-    private val viewModel: AddLeadSubmitViewModel by viewModels()
+    private val viewModel: FormLeadSubmitViewModel by viewModels()
     var statusId: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,11 +37,26 @@ class AddLeadSubmitFragment :
             binding.layoutAddleadsubmit.toolbarFormsecond.title =
                 getString(R.string.form_update_lead)
             binding.layoutAddleadsubmit.tvFormsecondType.setText(viewModel.lead?.type?.name, false)
-            binding.layoutAddleadsubmit.tvFormsecondChannel.setText(viewModel.lead?.channel?.name, false)
-            binding.layoutAddleadsubmit.tvFormsecondMedia.setText(viewModel.lead?.media?.name, false)
-            binding.layoutAddleadsubmit.tvFormsecondSource.setText(viewModel.lead?.source?.name, false)
-            binding.layoutAddleadsubmit.tvFormsecondStatus.setText(viewModel.lead?.status?.name, false)
-            binding.layoutAddleadsubmit.tvFormsecondProbability.setText(viewModel.lead?.probability?.name, false)
+            binding.layoutAddleadsubmit.tvFormsecondChannel.setText(
+                viewModel.lead?.channel?.name,
+                false
+            )
+            binding.layoutAddleadsubmit.tvFormsecondMedia.setText(
+                viewModel.lead?.media?.name,
+                false
+            )
+            binding.layoutAddleadsubmit.tvFormsecondSource.setText(
+                viewModel.lead?.source?.name,
+                false
+            )
+            binding.layoutAddleadsubmit.tvFormsecondStatus.setText(
+                viewModel.lead?.status?.name,
+                false
+            )
+            binding.layoutAddleadsubmit.tvFormsecondProbability.setText(
+                viewModel.lead?.probability?.name,
+                false
+            )
             binding.layoutAddleadsubmit.tietFormsecondNote.setText(viewModel.lead?.generalNotes)
         }
 
@@ -73,7 +88,6 @@ class AddLeadSubmitFragment :
                     binding.layoutAddleadsubmit.shimmerFormsecondType,
                     binding.layoutAddleadsubmit.tilFormsecondType
                 )
-
 
                 is UIState.Success -> {
                     viewModel.types = state.data
@@ -171,7 +185,6 @@ class AddLeadSubmitFragment :
                     binding.layoutAddleadsubmit.tilFormsecondStatus
                 )
 
-
                 is UIState.Success -> {
                     viewModel.statuses = state.data
                     stopShimmer(
@@ -195,7 +208,6 @@ class AddLeadSubmitFragment :
                     binding.layoutAddleadsubmit.shimmerFormsecondProbability,
                     binding.layoutAddleadsubmit.tilFormsecondProbability
                 )
-
 
                 is UIState.Success -> {
                     viewModel.probabilities = state.data
@@ -225,7 +237,6 @@ class AddLeadSubmitFragment :
                     binding.layoutAddleadsubmit.pbFormsecond.visibility = View.GONE
                 }
 
-
                 is UIState.Success -> {
                     doUpdateStatus(state.data.id, statusId)
                 }
@@ -248,7 +259,6 @@ class AddLeadSubmitFragment :
                     binding.layoutAddleadsubmit.btnFormsecondSubmit.visibility = View.VISIBLE
                     binding.layoutAddleadsubmit.pbFormsecond.visibility = View.GONE
                 }
-
 
                 is UIState.Success -> {
                     binding.layoutAddleadsubmit.btnFormsecondSubmit.visibility = View.VISIBLE
@@ -316,7 +326,6 @@ class AddLeadSubmitFragment :
             "IDNumberPhoto",
             requireContext()
         )
-
 
         val typePart: MultipartBody.Part? = dropDownInputToMultipart(
             binding.layoutAddleadsubmit.tvFormsecondType,
@@ -397,7 +406,8 @@ class AddLeadSubmitFragment :
                 )
             } else {
                 viewModel.postUpdateLead(
-                    viewModel.lead!!.id.toString(), PostLeadRequest(
+                    viewModel.lead!!.id.toString(),
+                    PostLeadRequest(
                         fullName = fullNamePart,
                         email = emailPart,
                         phone = phonePart,

@@ -14,7 +14,6 @@ import com.agungtriu.gxsales.utils.Utils
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
     private val viewModel: LoginViewModel by viewModels()
@@ -70,5 +69,4 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         binding.btnLogin.visibility = View.VISIBLE
         binding.pbLogin.visibility = View.INVISIBLE
     }
-
 }

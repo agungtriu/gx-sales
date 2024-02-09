@@ -12,7 +12,6 @@ import com.agungtriu.gxsales.databinding.FragmentDashboardBinding
 import com.agungtriu.gxsales.ui.dashboard.account.AccountBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class DashboardFragment :
     BaseFragment<FragmentDashboardBinding>(FragmentDashboardBinding::inflate) {

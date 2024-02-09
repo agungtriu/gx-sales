@@ -4,7 +4,7 @@
     android:id="@+id/constraint_itemshop"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp">
+    android:layout_marginHorizontal="24dp">
 
     <ImageView
         android:id="@+id/iv_itemshop"
@@ -25,7 +25,7 @@
         android:fontFamily="@font/inter_medium"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-        android:textColor="#2D2D2D"
+        android:textColor="@color/color_all_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_itemshop"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/inter_regular"
         android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-        android:textColor="#F9C900"
+        android:textColor="@color/yellow"
         app:layout_constraintEnd_toEndOf="@id/tv_itemshop_name"
         app:layout_constraintStart_toStartOf="@id/tv_itemshop_name"
         app:layout_constraintTop_toBottomOf="@id/tv_itemshop_name" />
@@ -49,7 +49,7 @@
         android:layout_marginTop="6dp"
         android:fontFamily="@font/inter_regular"
         android:text="@string/shop_stock"
-        android:textColor="#757575"
+        android:textColor="@color/color_shop_item_title"
         android:textSize="10sp"
         app:layout_constraintEnd_toStartOf="@id/tv_itemshop_stock"
         app:layout_constraintStart_toStartOf="@id/tv_itemshop_name"
@@ -62,7 +62,7 @@
         android:layout_marginStart="3dp"
         android:layout_marginTop="6dp"
         android:fontFamily="@font/inter_semi_bold"
-        android:textColor="#484848"
+        android:textColor="@color/color_shop_item"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="@id/tv_itemshop_name"
         app:layout_constraintStart_toEndOf="@id/tv_itemshop_stock_title"
@@ -75,7 +75,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/inter_regular"
         android:text="@string/shop_type"
-        android:textColor="#757575"
+        android:textColor="@color/color_shop_item_title"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@id/tv_itemshop_name"
         app:layout_constraintTop_toBottomOf="@id/tv_itemshop_stock_title" />
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:fontFamily="@font/inter_regular"
-        android:textColor="#484848"
+        android:textColor="@color/color_shop_item"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@id/tv_itemshop_type_title"
         app:layout_constraintStart_toEndOf="@id/tv_itemshop_type_title"
@@ -107,8 +107,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:fontFamily="@font/inter_regular"
-        android:text="w/Tax:"
-        android:textColor="#757575"
+        android:text="@string/itemshop_tax_title"
+        android:textColor="@color/color_shop_item_title"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@id/tv_itemshop_type_title"
         app:layout_constraintStart_toEndOf="@id/divider_itemshop_second"
@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:fontFamily="@font/inter_regular"
-        android:textColor="#484848"
+        android:textColor="@color/color_shop_item"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@id/tv_itemshop_type_title"
         app:layout_constraintEnd_toEndOf="parent"

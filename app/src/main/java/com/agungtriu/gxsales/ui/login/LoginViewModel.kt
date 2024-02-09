@@ -3,7 +3,6 @@ package com.agungtriu.gxsales.ui.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.agungtriu.gxsales.data.AuthorizationRepository
 import com.agungtriu.gxsales.data.remote.request.LoginRequest

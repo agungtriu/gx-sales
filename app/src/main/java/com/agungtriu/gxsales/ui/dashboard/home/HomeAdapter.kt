@@ -29,7 +29,6 @@ class HomeAdapter : ListAdapter<StatusesItem, HomeAdapter.ViewHolder>(callback) 
                 "Total Leads ${item.name}"
             }
         }
-
     }
 
     companion object {
@@ -39,7 +38,6 @@ class HomeAdapter : ListAdapter<StatusesItem, HomeAdapter.ViewHolder>(callback) 
 
             override fun areContentsTheSame(oldItem: StatusesItem, newItem: StatusesItem): Boolean =
                 oldItem.name == newItem.name
-
         }
     }
 }
