@@ -237,24 +237,45 @@
                 app:layout_constraintStart_toStartOf="@id/tv_form_branch_category"
                 app:layout_constraintTop_toBottomOf="@id/til_form_email" />
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_form_phone_code"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedRoundedBox.Start.ExposedDropdownMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:background="@drawable/all_rectangle_rounded_start_8dp"
-                android:backgroundTint="#F9C900"
-                android:drawablePadding="2dp"
-                android:fontFamily="@font/inter_regular"
-                android:gravity="center"
-                android:paddingHorizontal="14dp"
-                android:paddingVertical="10dp"
-                android:text="@string/form_code_id"
-                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                app:drawableEndCompat="@drawable/ic_down"
+                app:boxBackgroundColor="#F9C900"
+                app:hintEnabled="false"
                 app:layout_constraintBottom_toBottomOf="@id/til_form_phone"
                 app:layout_constraintEnd_toStartOf="@id/til_form_phone"
                 app:layout_constraintStart_toStartOf="@id/tv_form_branch_category"
-                app:layout_constraintTop_toTopOf="@id/til_form_phone" />
+                app:layout_constraintTop_toTopOf="@id/til_form_phone">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_form_phone_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:inputType="none"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColorHint="#667085" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_form_phone_code"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/til_form_phone_code"
+                app:layout_constraintEnd_toEndOf="@id/til_form_phone_code"
+                app:layout_constraintStart_toStartOf="@id/til_form_phone_code"
+                app:layout_constraintTop_toTopOf="@id/til_form_phone_code">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_shimmer" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_form_phone"
@@ -347,6 +368,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
+                    android:enabled="false"
                     android:fontFamily="@font/inter_regular"
                     android:gravity="top|start"
                     android:hint="@string/form_address_hint"

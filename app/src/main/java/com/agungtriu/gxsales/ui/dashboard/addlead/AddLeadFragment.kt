@@ -21,6 +21,7 @@ import com.agungtriu.gxsales.ui.dashboard.location.Location
 import com.agungtriu.gxsales.ui.dashboard.location.LocationFragment.Companion.LOCATION_KEY
 import com.agungtriu.gxsales.utils.FormValidation.dropDownInputToString
 import com.agungtriu.gxsales.utils.FormValidation.textInputToString
+import com.agungtriu.gxsales.utils.Phone
 import com.agungtriu.gxsales.utils.PhotoUriManager
 import com.agungtriu.gxsales.utils.PhotoUriManager.getFileSize
 import com.agungtriu.gxsales.utils.PhotoUriManager.getImageName
@@ -101,6 +102,12 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
         binding.layoutAddForm.tvFormFemale.setOnClickListener {
             binding.layoutAddForm.rbFormFemale.isChecked = true
         }
+
+        binding.layoutAddForm.tvFormPhoneCode.setOnItemClickListener { parent, _, position, _ ->
+            binding.layoutAddForm.tvFormPhoneCode.setText(
+                parent.adapter.getItem(position).toString(), false
+            )
+        }
     }
 
 
@@ -130,8 +137,39 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
             }
         }
 
+        viewModel.resultPhoneCodes.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is UIState.Loading -> Utils.stopShimmer(
+                    binding.layoutAddForm.shimmerFormPhoneCode,
+                    binding.layoutAddForm.tilFormPhoneCode
+                )
+
+                is UIState.Error -> Utils.stopShimmer(
+                    binding.layoutAddForm.shimmerFormPhoneCode,
+                    binding.layoutAddForm.tilFormPhoneCode
+                )
+
+
+                is UIState.Success -> {
+                    viewModel.phoneCodes = state.data
+                    Utils.stopShimmer(
+                        binding.layoutAddForm.shimmerFormPhoneCode,
+                        binding.layoutAddForm.tilFormPhoneCode
+                    )
+                    (binding.layoutAddForm.tvFormPhoneCode as MaterialAutoCompleteTextView)
+                        .setSimpleItems(
+                            state.data.map { it.code }.toTypedArray()
+                        )
+                    if (binding.layoutAddForm.tvFormPhoneCode.text.isNullOrBlank()) {
+                        binding.layoutAddForm.tvFormPhoneCode.setText(Phone.INDONESIA.code, false)
+                    }
+                }
+            }
+        }
+
         viewModel.resultLocation.observe(viewLifecycleOwner) {
             if (!it.address.isNullOrBlank() && it.latitude != null && it.longitude != null) {
+                binding.layoutAddForm.tietFormAddress.isEnabled = true
                 binding.layoutAddForm.tietFormAddress.setText(it.address)
                 binding.layoutAddForm.tietFormLatitude.setText(String.format("%.5f", it.latitude))
                 binding.layoutAddForm.tietFormLongitude.setText(String.format("%.5f", it.longitude))
@@ -155,6 +193,10 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                         binding.layoutAddForm.tilFormEmail
                     )
                     Utils.startShimmer(
+                        binding.layoutAddForm.shimmerFormPhoneCode,
+                        binding.layoutAddForm.tilFormPhoneCode
+                    )
+                    Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormPhone,
                         binding.layoutAddForm.tilFormPhone
                     )
@@ -172,9 +214,10 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                         binding.layoutAddForm.tilFormLongitude
                     )
 
-                    binding.layoutAddForm.shimmerFormGender.startShimmer()
-                    binding.layoutAddForm.shimmerFormGender.visibility = View.VISIBLE
-                    binding.layoutAddForm.rgFormGender.visibility = View.INVISIBLE
+                    Utils.startShimmer(
+                        binding.layoutAddForm.shimmerFormGender,
+                        binding.layoutAddForm.rgFormGender
+                    )
 
                     Utils.startShimmer(
                         binding.layoutAddForm.shimmerFormIdNumber,
@@ -196,6 +239,10 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                         binding.layoutAddForm.tilFormEmail
                     )
                     Utils.stopShimmer(
+                        binding.layoutAddForm.shimmerFormPhoneCode,
+                        binding.layoutAddForm.tilFormPhoneCode
+                    )
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormPhone,
                         binding.layoutAddForm.tilFormPhone
                     )
@@ -213,9 +260,10 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                         binding.layoutAddForm.tilFormLongitude
                     )
 
-                    binding.layoutAddForm.shimmerFormGender.stopShimmer()
-                    binding.layoutAddForm.shimmerFormGender.visibility = View.GONE
-                    binding.layoutAddForm.rgFormGender.visibility = View.VISIBLE
+                    Utils.stopShimmer(
+                        binding.layoutAddForm.shimmerFormGender,
+                        binding.layoutAddForm.rgFormGender
+                    )
 
                     Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormIdNumber,
@@ -236,7 +284,22 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                     binding.layoutAddForm.tvFormBranch.setText(state.data.branchOffice?.name, false)
                     binding.layoutAddForm.tietFormName.setText(state.data.fullName)
                     binding.layoutAddForm.tietFormEmail.setText(state.data.email)
-                    binding.layoutAddForm.tietFormPhone.setText(state.data.phone)
+                    val phoneCode = viewModel.phoneCodes?.filter {
+                        state.data.phone != null && it.code != null && state.data.phone.startsWith(
+                            it.code
+                        )
+                    }
+                    if (!phoneCode.isNullOrEmpty()) {
+                        binding.layoutAddForm.tvFormPhoneCode.setText(phoneCode[0].code, false)
+                        binding.layoutAddForm.tietFormPhone.setText(
+                            state.data.phone?.replaceFirst(
+                                phoneCode[0].code!!,
+                                ""
+                            )
+                        )
+                    } else {
+                        binding.layoutAddForm.tietFormPhone.setText(state.data.phone)
+                    }
                     binding.layoutAddForm.tietFormAddress.setText(state.data.address)
                     when (state.data.gender) {
                         "male" -> binding.layoutAddForm.rbFormMale.isChecked = true
@@ -255,6 +318,10 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                     Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormEmail,
                         binding.layoutAddForm.tilFormEmail
+                    )
+                    Utils.stopShimmer(
+                        binding.layoutAddForm.shimmerFormPhoneCode,
+                        binding.layoutAddForm.tilFormPhoneCode
                     )
                     Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormPhone,
@@ -382,8 +449,7 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
             binding.layoutAddForm.tietFormPhone,
             binding.layoutAddForm.tvFormPhoneTitle,
             false,
-            requireContext(),
-            "phone"
+            requireContext()
         )
         val address = textInputToString(
             binding.layoutAddForm.tietFormAddress,
@@ -425,7 +491,7 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                 FORM_KEY to Form(
                     fullName = fullName,
                     email = email,
-                    phone = phone,
+                    phone = binding.layoutAddForm.tvFormPhoneCode.text.toString().plus(phone),
                     address = address,
                     latitude = viewModel.dataLocation.latitude.toString(),
                     longitude = viewModel.dataLocation.longitude.toString(),

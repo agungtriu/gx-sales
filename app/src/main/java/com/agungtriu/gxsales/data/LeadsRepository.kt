@@ -2,6 +2,7 @@ package com.agungtriu.gxsales.data
 
 import com.agungtriu.gxsales.data.remote.request.PostLeadRequest
 import com.agungtriu.gxsales.data.remote.request.UpdateStatusRequest
+import com.agungtriu.gxsales.data.remote.response.CountriesItem
 import com.agungtriu.gxsales.data.remote.response.DataItem
 import com.agungtriu.gxsales.data.remote.response.DataStatus
 import com.agungtriu.gxsales.data.remote.response.DeleteLeadResponse
@@ -29,6 +30,7 @@ interface LeadsRepository {
     ): Flow<UIState<DataStatus>>
 
     suspend fun getBranchOffices(): Flow<UIState<List<DataItem>>>
+    suspend fun getPhoneCodes(): Flow<UIState<List<CountriesItem>>>
     suspend fun getTypes(): Flow<UIState<List<DataItem>>>
     suspend fun getChannels(): Flow<UIState<List<DataItem>>>
     suspend fun getMedias(): Flow<UIState<List<DataItem>>>

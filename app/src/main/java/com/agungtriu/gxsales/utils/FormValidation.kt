@@ -40,10 +40,6 @@ object FormValidation {
                     }
                 }
 
-                "phone" -> {
-                    "0".plus(editText.text.toString())
-                }
-
                 else -> {
                     editText.text.toString()
                 }
@@ -64,7 +60,7 @@ object FormValidation {
         nullable: Boolean
     ): String? {
         return if (!editText.text.isNullOrBlank() && list != null) {
-            list.filter { it.name !=null && it.name == editText.text.toString() }[0].id.toString()
+            list.filter { it.name != null && it.name == editText.text.toString() }[0].id.toString()
         } else {
             if (!nullable) {
                 editText.error = title.text.toString().substring(0, title.text.length - 1)
@@ -101,7 +97,7 @@ object FormValidation {
     ): MultipartBody.Part? {
         return if (!editText.text.isNullOrBlank() && list != null) {
             val textBody =
-                list.filter { it.name !=null && it.name == editText.text.toString() }[0].id.toString()
+                list.filter { it.name != null && it.name == editText.text.toString() }[0].id.toString()
                     .toRequestBody("text/plain".toMediaType())
             MultipartBody.Part.createFormData(key, null, textBody)
         } else {
