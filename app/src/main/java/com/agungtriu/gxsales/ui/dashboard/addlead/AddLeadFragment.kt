@@ -125,7 +125,7 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                         binding.layoutAddForm.tilFormBranch
                     )
                     (binding.layoutAddForm.tvFormBranch as MaterialAutoCompleteTextView)
-                        .setSimpleItems(state.data.map { it.name }.toTypedArray())
+                        .setSimpleItems(state.data.map { it.name }.toSet().toTypedArray())
                 }
             }
         }
@@ -233,7 +233,7 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                             state.data.longitude?.toDouble()
                         )
                     )
-                    binding.layoutAddForm.tvFormBranch.setText(state.data.branchOffice?.name)
+                    binding.layoutAddForm.tvFormBranch.setText(state.data.branchOffice?.name, false)
                     binding.layoutAddForm.tietFormName.setText(state.data.fullName)
                     binding.layoutAddForm.tietFormEmail.setText(state.data.email)
                     binding.layoutAddForm.tietFormPhone.setText(state.data.phone)

@@ -36,12 +36,12 @@ class AddLeadSubmitFragment :
         if (viewModel.lead != null) {
             binding.layoutAddleadsubmit.toolbarFormsecond.title =
                 getString(R.string.form_update_lead)
-            binding.layoutAddleadsubmit.tvFormsecondType.setText(viewModel.lead?.type?.name)
-            binding.layoutAddleadsubmit.tvFormsecondChannel.setText(viewModel.lead?.channel?.name)
-            binding.layoutAddleadsubmit.tvFormsecondMedia.setText(viewModel.lead?.media?.name)
-            binding.layoutAddleadsubmit.tvFormsecondSource.setText(viewModel.lead?.source?.name)
-            binding.layoutAddleadsubmit.tvFormsecondStatus.setText(viewModel.lead?.status?.name)
-            binding.layoutAddleadsubmit.tvFormsecondProbability.setText(viewModel.lead?.probability?.name)
+            binding.layoutAddleadsubmit.tvFormsecondType.setText(viewModel.lead?.type?.name, false)
+            binding.layoutAddleadsubmit.tvFormsecondChannel.setText(viewModel.lead?.channel?.name, false)
+            binding.layoutAddleadsubmit.tvFormsecondMedia.setText(viewModel.lead?.media?.name, false)
+            binding.layoutAddleadsubmit.tvFormsecondSource.setText(viewModel.lead?.source?.name, false)
+            binding.layoutAddleadsubmit.tvFormsecondStatus.setText(viewModel.lead?.status?.name, false)
+            binding.layoutAddleadsubmit.tvFormsecondProbability.setText(viewModel.lead?.probability?.name, false)
             binding.layoutAddleadsubmit.tietFormsecondNote.setText(viewModel.lead?.generalNotes)
         }
 
