@@ -111,16 +111,16 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
         if (viewModel.filterSearch.search != null) {
             result = list.filter {
                 it.fullName != null &&
-                        it.fullName.lowercase()
-                            .contains((viewModel.filterSearch.search ?: "").lowercase())
+                    it.fullName.lowercase()
+                        .contains((viewModel.filterSearch.search ?: "").lowercase())
             }
         }
 
         if (viewModel.filterSearch.fromDate != null && viewModel.filterSearch.toDate != null) {
             result = result.filter {
                 it.createdAt != null &&
-                        viewModel.filterSearch.fromDate!! <= dateToMillis(it.createdAt) &&
-                        viewModel.filterSearch.toDate!! >= dateToMillis(it.createdAt)
+                    viewModel.filterSearch.fromDate!! <= dateToMillis(it.createdAt) &&
+                    viewModel.filterSearch.toDate!! >= dateToMillis(it.createdAt)
             }
         }
 
