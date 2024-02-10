@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
         getDashboard()
     }
 
-    private fun getProfile() {
+    fun getProfile() {
         viewModelScope.launch {
             authorizationRepository.getProfile().collect {
                 _resultProfile.value = it

@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.agungtriu.gxsales.R
 import com.agungtriu.gxsales.base.BaseFragment
 import com.agungtriu.gxsales.data.remote.response.LeadResponse
 import com.agungtriu.gxsales.databinding.FragmentLeadsBinding
@@ -99,6 +100,10 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
             )
             doFilter()
         }
+
+        binding.swipeLeads.setOnRefreshListener {
+            viewModel.getLeads()
+        }
     }
 
     private fun doFilter() {
@@ -106,16 +111,16 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
         if (viewModel.filterSearch.search != null) {
             result = list.filter {
                 it.fullName != null &&
-                    it.fullName.lowercase()
-                        .contains((viewModel.filterSearch.search ?: "").lowercase())
+                        it.fullName.lowercase()
+                            .contains((viewModel.filterSearch.search ?: "").lowercase())
             }
         }
 
         if (viewModel.filterSearch.fromDate != null && viewModel.filterSearch.toDate != null) {
             result = result.filter {
                 it.createdAt != null &&
-                    viewModel.filterSearch.fromDate!! <= dateToMillis(it.createdAt) &&
-                    viewModel.filterSearch.toDate!! >= dateToMillis(it.createdAt)
+                        viewModel.filterSearch.fromDate!! <= dateToMillis(it.createdAt) &&
+                        viewModel.filterSearch.toDate!! >= dateToMillis(it.createdAt)
             }
         }
 
@@ -142,8 +147,12 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
                 it.source != null && it.source.name.equals(viewModel.filterSearch.source)
             }
         }
-
-        adapter.submitList(result)
+        if (result.isEmpty()) {
+            showError()
+        } else {
+            hideError()
+            adapter.submitList(result)
+        }
     }
 
     private fun setUpObserver() {
@@ -154,10 +163,14 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
                     stopShimmer()
                     Snackbar.make(requireView(), it.error.message.toString(), Snackbar.LENGTH_LONG)
                         .show()
+                    showError(it.error.message)
                 }
 
                 is UIState.Success -> {
                     stopShimmer()
+                    hideError()
+                    binding.layoutLeadsError.constraintError.visibility = View.GONE
+                    binding.rvLeads.visibility = View.VISIBLE
                     list = it.data
                     adapter.submitList(list)
                 }
@@ -181,12 +194,25 @@ class LeadsFragment : BaseFragment<FragmentLeadsBinding>(FragmentLeadsBinding::i
         binding.rvLeads.visibility = View.GONE
         binding.shimmerLeads.visibility = View.VISIBLE
         binding.shimmerLeads.startShimmer()
+        binding.swipeLeads.isRefreshing = true
     }
 
     private fun stopShimmer() {
         binding.rvLeads.visibility = View.VISIBLE
         binding.shimmerLeads.visibility = View.GONE
         binding.shimmerLeads.stopShimmer()
+        binding.swipeLeads.isRefreshing = false
+    }
+
+    private fun showError(message: String? = null) {
+        binding.rvLeads.visibility = View.GONE
+        binding.layoutLeadsError.constraintError.visibility = View.VISIBLE
+        binding.layoutLeadsError.tvError.text = message ?: getString(R.string.error_data_not_found)
+    }
+
+    private fun hideError() {
+        binding.rvLeads.visibility = View.VISIBLE
+        binding.layoutLeadsError.constraintError.visibility = View.INVISIBLE
     }
 
     companion object {
