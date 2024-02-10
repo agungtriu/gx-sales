@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
+    android:backgroundTint="@color/color_surface"
     android:background="@drawable/all_rectangle_rounded_8dp">
 
     <ImageView
@@ -44,7 +45,7 @@
 
     <Button
         android:id="@+id/btn_dialog_submit"
-        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Login"
+        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Yellow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"

@@ -1,4 +1,4 @@
-package com.agungtriu.gxsales.ui.dashboard.addlead
+package com.agungtriu.gxsales.ui.dashboard.formlead
 
 import android.net.Uri
 import android.os.Bundle
@@ -21,6 +21,8 @@ import com.agungtriu.gxsales.ui.dashboard.location.Location
 import com.agungtriu.gxsales.ui.dashboard.location.LocationFragment.Companion.LOCATION_KEY
 import com.agungtriu.gxsales.utils.FormValidation.dropDownInputToString
 import com.agungtriu.gxsales.utils.FormValidation.textInputToString
+import com.agungtriu.gxsales.utils.Gender
+import com.agungtriu.gxsales.utils.Phone
 import com.agungtriu.gxsales.utils.PhotoUriManager
 import com.agungtriu.gxsales.utils.PhotoUriManager.getFileSize
 import com.agungtriu.gxsales.utils.PhotoUriManager.getImageName
@@ -32,8 +34,8 @@ import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBinding::inflate) {
-    private val viewModel: AddLeadViewModel by viewModels()
+class FormLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBinding::inflate) {
+    private val viewModel: FormLeadViewModel by viewModels()
     private lateinit var galleryResultLauncher: ActivityResultLauncher<PickVisualMediaRequest>
     private lateinit var takePictureLauncher: ActivityResultLauncher<Uri>
 
@@ -101,130 +103,91 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
         binding.layoutAddForm.tvFormFemale.setOnClickListener {
             binding.layoutAddForm.rbFormFemale.isChecked = true
         }
-    }
 
+        binding.layoutAddForm.tvFormPhoneCode.setOnItemClickListener { parent, _, position, _ ->
+            binding.layoutAddForm.tvFormPhoneCode.setText(
+                parent.adapter.getItem(position).toString(),
+                false
+            )
+        }
+    }
 
     private fun setUpObserver() {
         viewModel.resultBranchOffices.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is UIState.Loading -> Utils.startShimmerInput(
+                is UIState.Loading -> Utils.startShimmer(
                     binding.layoutAddForm.shimmerFormBranch,
                     binding.layoutAddForm.tilFormBranch
                 )
 
-                is UIState.Error -> Utils.stopShimmerInput(
+                is UIState.Error -> Utils.stopShimmer(
                     binding.layoutAddForm.shimmerFormBranch,
                     binding.layoutAddForm.tilFormBranch
                 )
-
 
                 is UIState.Success -> {
                     viewModel.branchOffices = state.data
-                    Utils.stopShimmerInput(
+                    Utils.stopShimmer(
                         binding.layoutAddForm.shimmerFormBranch,
                         binding.layoutAddForm.tilFormBranch
                     )
                     (binding.layoutAddForm.tvFormBranch as MaterialAutoCompleteTextView)
-                        .setSimpleItems(state.data.map { it.name }.toTypedArray())
+                        .setSimpleItems(state.data.map { it.name }.toSet().toTypedArray())
+                }
+            }
+        }
+
+        viewModel.resultPhoneCodes.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is UIState.Loading -> Utils.stopShimmer(
+                    binding.layoutAddForm.shimmerFormPhoneCode,
+                    binding.layoutAddForm.tilFormPhoneCode
+                )
+
+                is UIState.Error -> Utils.stopShimmer(
+                    binding.layoutAddForm.shimmerFormPhoneCode,
+                    binding.layoutAddForm.tilFormPhoneCode
+                )
+
+                is UIState.Success -> {
+                    viewModel.phoneCodes = state.data
+                    Utils.stopShimmer(
+                        binding.layoutAddForm.shimmerFormPhoneCode,
+                        binding.layoutAddForm.tilFormPhoneCode
+                    )
+                    (binding.layoutAddForm.tvFormPhoneCode as MaterialAutoCompleteTextView)
+                        .setSimpleItems(
+                            state.data.map { it.code }.toTypedArray()
+                        )
+                    if (binding.layoutAddForm.tvFormPhoneCode.text.isNullOrBlank()) {
+                        binding.layoutAddForm.tvFormPhoneCode.setText(Phone.INDONESIA.code, false)
+                    }
                 }
             }
         }
 
         viewModel.resultLocation.observe(viewLifecycleOwner) {
             if (!it.address.isNullOrBlank() && it.latitude != null && it.longitude != null) {
+                binding.layoutAddForm.tietFormAddress.isEnabled = true
                 binding.layoutAddForm.tietFormAddress.setText(it.address)
                 binding.layoutAddForm.tietFormLatitude.setText(String.format("%.5f", it.latitude))
+                binding.layoutAddForm.tilFormLatitude.boxBackgroundColor =
+                    requireContext().getColor(R.color.color_location_filled)
                 binding.layoutAddForm.tietFormLongitude.setText(String.format("%.5f", it.longitude))
+                binding.layoutAddForm.tilFormLongitude.boxBackgroundColor =
+                    requireContext().getColor(R.color.color_location_filled)
                 viewModel.dataLocation = it
             }
         }
 
         viewModel.resultLead.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is UIState.Loading -> {
-                    Utils.startShimmerInput(
-                        binding.layoutAddForm.shimmerFormBranch,
-                        binding.layoutAddForm.tilFormBranch
-                    )
-                    Utils.startShimmerInput(
-                        binding.layoutAddForm.shimmerFormName,
-                        binding.layoutAddForm.tilFormName
-                    )
-                    Utils.startShimmerInput(
-                        binding.layoutAddForm.shimmerFormEmail,
-                        binding.layoutAddForm.tilFormEmail
-                    )
-                    Utils.startShimmerInput(
-                        binding.layoutAddForm.shimmerFormPhone,
-                        binding.layoutAddForm.tilFormPhone
-                    )
-                    Utils.startShimmerInput(
-                        binding.layoutAddForm.shimmerFormAddress,
-                        binding.layoutAddForm.tilFormAddress
-                    )
-                    Utils.startShimmerInput(
-                        binding.layoutAddForm.shimmerFormLatitude,
-                        binding.layoutAddForm.tilFormLatitude
-                    )
+                is UIState.Loading -> showShimmer()
 
-                    Utils.startShimmerInput(
-                        binding.layoutAddForm.shimmerFormLongitude,
-                        binding.layoutAddForm.tilFormLongitude
-                    )
-
-                    binding.layoutAddForm.shimmerFormGender.startShimmer()
-                    binding.layoutAddForm.shimmerFormGender.visibility = View.VISIBLE
-                    binding.layoutAddForm.rgFormGender.visibility = View.INVISIBLE
-
-                    Utils.startShimmerInput(
-                        binding.layoutAddForm.shimmerFormIdNumber,
-                        binding.layoutAddForm.tilFormIdNumber
-                    )
-                }
-
-                is UIState.Error -> {
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormBranch,
-                        binding.layoutAddForm.tilFormBranch
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormName,
-                        binding.layoutAddForm.tilFormName
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormEmail,
-                        binding.layoutAddForm.tilFormEmail
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormPhone,
-                        binding.layoutAddForm.tilFormPhone
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormAddress,
-                        binding.layoutAddForm.tilFormAddress
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormLatitude,
-                        binding.layoutAddForm.tilFormLatitude
-                    )
-
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormLongitude,
-                        binding.layoutAddForm.tilFormLongitude
-                    )
-
-                    binding.layoutAddForm.shimmerFormGender.stopShimmer()
-                    binding.layoutAddForm.shimmerFormGender.visibility = View.GONE
-                    binding.layoutAddForm.rgFormGender.visibility = View.VISIBLE
-
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormIdNumber,
-                        binding.layoutAddForm.tilFormIdNumber
-                    )
-                }
-
+                is UIState.Error -> hideShimmer()
 
                 is UIState.Success -> {
+                    hideShimmer()
                     viewModel.lead = state.data
                     viewModel.setLocation(
                         Location(
@@ -233,58 +196,128 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                             state.data.longitude?.toDouble()
                         )
                     )
-                    binding.layoutAddForm.tvFormBranch.setText(state.data.branchOffice?.name)
+                    binding.layoutAddForm.tvFormBranch.setText(state.data.branchOffice?.name, false)
                     binding.layoutAddForm.tietFormName.setText(state.data.fullName)
                     binding.layoutAddForm.tietFormEmail.setText(state.data.email)
-                    binding.layoutAddForm.tietFormPhone.setText(state.data.phone)
+                    val phoneCode = viewModel.phoneCodes?.filter {
+                        state.data.phone != null && it.code != null && state.data.phone.startsWith(
+                            it.code
+                        )
+                    }
+                    if (!phoneCode.isNullOrEmpty()) {
+                        binding.layoutAddForm.tvFormPhoneCode.setText(phoneCode[0].code, false)
+                        binding.layoutAddForm.tietFormPhone.setText(
+                            state.data.phone?.replaceFirst(
+                                phoneCode[0].code!!,
+                                ""
+                            )
+                        )
+                    } else {
+                        binding.layoutAddForm.tietFormPhone.setText(state.data.phone)
+                    }
                     binding.layoutAddForm.tietFormAddress.setText(state.data.address)
                     when (state.data.gender) {
-                        "male" -> binding.layoutAddForm.rbFormMale.isChecked = true
-                        "female" -> binding.layoutAddForm.rbFormFemale.isChecked = true
+                        Gender.MALE.lowercase -> binding.layoutAddForm.rbFormMale.isChecked = true
+                        Gender.FEMALE.lowercase ->
+                            binding.layoutAddForm.rbFormFemale.isChecked =
+                                true
                     }
                     binding.layoutAddForm.tietFormIdNumber.setText(state.data.iDNumber)
-
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormBranch,
-                        binding.layoutAddForm.tilFormBranch
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormName,
-                        binding.layoutAddForm.tilFormName
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormEmail,
-                        binding.layoutAddForm.tilFormEmail
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormPhone,
-                        binding.layoutAddForm.tilFormPhone
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormAddress,
-                        binding.layoutAddForm.tilFormAddress
-                    )
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormLatitude,
-                        binding.layoutAddForm.tilFormLatitude
-                    )
-
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormLongitude,
-                        binding.layoutAddForm.tilFormLongitude
-                    )
-
-                    binding.layoutAddForm.shimmerFormGender.stopShimmer()
-                    binding.layoutAddForm.shimmerFormGender.visibility = View.GONE
-                    binding.layoutAddForm.rgFormGender.visibility = View.VISIBLE
-
-                    Utils.stopShimmerInput(
-                        binding.layoutAddForm.shimmerFormIdNumber,
-                        binding.layoutAddForm.tilFormIdNumber
-                    )
                 }
             }
         }
+    }
+
+    private fun showShimmer() {
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormBranch,
+            binding.layoutAddForm.tilFormBranch
+        )
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormName,
+            binding.layoutAddForm.tilFormName
+        )
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormEmail,
+            binding.layoutAddForm.tilFormEmail
+        )
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormPhoneCode,
+            binding.layoutAddForm.tilFormPhoneCode
+        )
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormPhone,
+            binding.layoutAddForm.tilFormPhone
+        )
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormAddress,
+            binding.layoutAddForm.tilFormAddress
+        )
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormLatitude,
+            binding.layoutAddForm.tilFormLatitude
+        )
+
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormLongitude,
+            binding.layoutAddForm.tilFormLongitude
+        )
+
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormGender,
+            binding.layoutAddForm.rgFormGender
+        )
+
+        Utils.startShimmer(
+            binding.layoutAddForm.shimmerFormIdNumber,
+            binding.layoutAddForm.tilFormIdNumber
+        )
+    }
+
+    private fun hideShimmer() {
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormBranch,
+            binding.layoutAddForm.tilFormBranch
+        )
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormName,
+            binding.layoutAddForm.tilFormName
+        )
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormEmail,
+            binding.layoutAddForm.tilFormEmail
+        )
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormPhoneCode,
+            binding.layoutAddForm.tilFormPhoneCode
+        )
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormPhone,
+            binding.layoutAddForm.tilFormPhone
+        )
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormAddress,
+            binding.layoutAddForm.tilFormAddress
+        )
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormLatitude,
+            binding.layoutAddForm.tilFormLatitude
+        )
+
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormLongitude,
+            binding.layoutAddForm.tilFormLongitude
+        )
+
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormGender,
+            binding.layoutAddForm.rgFormGender
+        )
+
+        Utils.stopShimmer(
+            binding.layoutAddForm.shimmerFormIdNumber,
+            binding.layoutAddForm.tilFormIdNumber
+        )
     }
 
     private var imageUri: Uri? = null
@@ -364,7 +397,6 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
     }
 
     private fun submit() {
-
         val fullName = textInputToString(
             binding.layoutAddForm.tietFormName,
             binding.layoutAddForm.tvFormNameTitle,
@@ -382,8 +414,7 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
             binding.layoutAddForm.tietFormPhone,
             binding.layoutAddForm.tvFormPhoneTitle,
             false,
-            requireContext(),
-            "phone"
+            requireContext()
         )
         val address = textInputToString(
             binding.layoutAddForm.tietFormAddress,
@@ -404,9 +435,13 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
             requireContext()
         )
         val gender = if (binding.layoutAddForm.rgFormGender.checkedRadioButtonId != -1) {
-            requireView().findViewById<RadioButton>(binding.layoutAddForm.rgFormGender.checkedRadioButtonId).text.toString()
+            requireView().findViewById<RadioButton>(
+                binding.layoutAddForm.rgFormGender.checkedRadioButtonId
+            ).text.toString()
                 .lowercase()
-        } else null
+        } else {
+            null
+        }
         val idNumber = textInputToString(
             binding.layoutAddForm.tietFormIdNumber,
             binding.layoutAddForm.tvFormIdNumberTitle,
@@ -425,7 +460,7 @@ class AddLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBind
                 FORM_KEY to Form(
                     fullName = fullName,
                     email = email,
-                    phone = phone,
+                    phone = binding.layoutAddForm.tvFormPhoneCode.text.toString().plus(phone),
                     address = address,
                     latitude = viewModel.dataLocation.latitude.toString(),
                     longitude = viewModel.dataLocation.longitude.toString(),

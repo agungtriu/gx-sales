@@ -1,4 +1,4 @@
-package com.agungtriu.gxsales.ui.dashboard.addleadsubmit
+package com.agungtriu.gxsales.ui.dashboard.formleadsubmit
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,8 +17,8 @@ import com.agungtriu.gxsales.utils.FormValidation.dropDownInputToString
 import com.agungtriu.gxsales.utils.FormValidation.stringToMultipart
 import com.agungtriu.gxsales.utils.FormValidation.textInputToMultipart
 import com.agungtriu.gxsales.utils.UIState
-import com.agungtriu.gxsales.utils.Utils.startShimmerInput
-import com.agungtriu.gxsales.utils.Utils.stopShimmerInput
+import com.agungtriu.gxsales.utils.Utils.startShimmer
+import com.agungtriu.gxsales.utils.Utils.stopShimmer
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -26,9 +26,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MultipartBody
 
 @AndroidEntryPoint
-class AddLeadSubmitFragment :
+class FormLeadSubmitFragment :
     BaseFragment<FragmentAddLeadSubmitBinding>(FragmentAddLeadSubmitBinding::inflate) {
-    private val viewModel: AddLeadSubmitViewModel by viewModels()
+    private val viewModel: FormLeadSubmitViewModel by viewModels()
     var statusId: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,12 +36,27 @@ class AddLeadSubmitFragment :
         if (viewModel.lead != null) {
             binding.layoutAddleadsubmit.toolbarFormsecond.title =
                 getString(R.string.form_update_lead)
-            binding.layoutAddleadsubmit.tvFormsecondType.setText(viewModel.lead?.type?.name)
-            binding.layoutAddleadsubmit.tvFormsecondChannel.setText(viewModel.lead?.channel?.name)
-            binding.layoutAddleadsubmit.tvFormsecondMedia.setText(viewModel.lead?.media?.name)
-            binding.layoutAddleadsubmit.tvFormsecondSource.setText(viewModel.lead?.source?.name)
-            binding.layoutAddleadsubmit.tvFormsecondStatus.setText(viewModel.lead?.status?.name)
-            binding.layoutAddleadsubmit.tvFormsecondProbability.setText(viewModel.lead?.probability?.name)
+            binding.layoutAddleadsubmit.tvFormsecondType.setText(viewModel.lead?.type?.name, false)
+            binding.layoutAddleadsubmit.tvFormsecondChannel.setText(
+                viewModel.lead?.channel?.name,
+                false
+            )
+            binding.layoutAddleadsubmit.tvFormsecondMedia.setText(
+                viewModel.lead?.media?.name,
+                false
+            )
+            binding.layoutAddleadsubmit.tvFormsecondSource.setText(
+                viewModel.lead?.source?.name,
+                false
+            )
+            binding.layoutAddleadsubmit.tvFormsecondStatus.setText(
+                viewModel.lead?.status?.name,
+                false
+            )
+            binding.layoutAddleadsubmit.tvFormsecondProbability.setText(
+                viewModel.lead?.probability?.name,
+                false
+            )
             binding.layoutAddleadsubmit.tietFormsecondNote.setText(viewModel.lead?.generalNotes)
         }
 
@@ -64,20 +79,19 @@ class AddLeadSubmitFragment :
     private fun setUpObserver() {
         viewModel.resultTypes.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is UIState.Loading -> startShimmerInput(
+                is UIState.Loading -> startShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondType,
                     binding.layoutAddleadsubmit.tilFormsecondType
                 )
 
-                is UIState.Error -> stopShimmerInput(
+                is UIState.Error -> stopShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondType,
                     binding.layoutAddleadsubmit.tilFormsecondType
                 )
-
 
                 is UIState.Success -> {
                     viewModel.types = state.data
-                    stopShimmerInput(
+                    stopShimmer(
                         binding.layoutAddleadsubmit.shimmerFormsecondType,
                         binding.layoutAddleadsubmit.tilFormsecondType
                     )
@@ -89,19 +103,19 @@ class AddLeadSubmitFragment :
 
         viewModel.resultChannels.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is UIState.Loading -> startShimmerInput(
+                is UIState.Loading -> startShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondChannel,
                     binding.layoutAddleadsubmit.tilFormsecondChannel
                 )
 
-                is UIState.Error -> stopShimmerInput(
+                is UIState.Error -> stopShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondChannel,
                     binding.layoutAddleadsubmit.tilFormsecondChannel
                 )
 
                 is UIState.Success -> {
                     viewModel.channels = state.data
-                    stopShimmerInput(
+                    stopShimmer(
                         binding.layoutAddleadsubmit.shimmerFormsecondChannel,
                         binding.layoutAddleadsubmit.tilFormsecondChannel
                     )
@@ -113,19 +127,19 @@ class AddLeadSubmitFragment :
 
         viewModel.resultMedias.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is UIState.Loading -> startShimmerInput(
+                is UIState.Loading -> startShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondMedia,
                     binding.layoutAddleadsubmit.tilFormsecondMedia
                 )
 
-                is UIState.Error -> stopShimmerInput(
+                is UIState.Error -> stopShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondMedia,
                     binding.layoutAddleadsubmit.tilFormsecondMedia
                 )
 
                 is UIState.Success -> {
                     viewModel.medias = state.data
-                    stopShimmerInput(
+                    stopShimmer(
                         binding.layoutAddleadsubmit.shimmerFormsecondMedia,
                         binding.layoutAddleadsubmit.tilFormsecondMedia
                     )
@@ -137,19 +151,19 @@ class AddLeadSubmitFragment :
 
         viewModel.resultSources.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is UIState.Loading -> startShimmerInput(
+                is UIState.Loading -> startShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondSource,
                     binding.layoutAddleadsubmit.tilFormsecondSource
                 )
 
-                is UIState.Error -> stopShimmerInput(
+                is UIState.Error -> stopShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondSource,
                     binding.layoutAddleadsubmit.tilFormsecondSource
                 )
 
                 is UIState.Success -> {
                     viewModel.sources = state.data
-                    stopShimmerInput(
+                    stopShimmer(
                         binding.layoutAddleadsubmit.shimmerFormsecondSource,
                         binding.layoutAddleadsubmit.tilFormsecondSource
                     )
@@ -161,20 +175,19 @@ class AddLeadSubmitFragment :
 
         viewModel.resultStatuses.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is UIState.Loading -> startShimmerInput(
+                is UIState.Loading -> startShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondStatus,
                     binding.layoutAddleadsubmit.tilFormsecondStatus
                 )
 
-                is UIState.Error -> stopShimmerInput(
+                is UIState.Error -> stopShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondStatus,
                     binding.layoutAddleadsubmit.tilFormsecondStatus
                 )
-
 
                 is UIState.Success -> {
                     viewModel.statuses = state.data
-                    stopShimmerInput(
+                    stopShimmer(
                         binding.layoutAddleadsubmit.shimmerFormsecondStatus,
                         binding.layoutAddleadsubmit.tilFormsecondStatus
                     )
@@ -186,20 +199,19 @@ class AddLeadSubmitFragment :
 
         viewModel.resultProbabilities.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is UIState.Loading -> startShimmerInput(
+                is UIState.Loading -> startShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondProbability,
                     binding.layoutAddleadsubmit.tilFormsecondProbability
                 )
 
-                is UIState.Error -> stopShimmerInput(
+                is UIState.Error -> stopShimmer(
                     binding.layoutAddleadsubmit.shimmerFormsecondProbability,
                     binding.layoutAddleadsubmit.tilFormsecondProbability
                 )
-
 
                 is UIState.Success -> {
                     viewModel.probabilities = state.data
-                    stopShimmerInput(
+                    stopShimmer(
                         binding.layoutAddleadsubmit.shimmerFormsecondProbability,
                         binding.layoutAddleadsubmit.tilFormsecondProbability
                     )
@@ -225,7 +237,6 @@ class AddLeadSubmitFragment :
                     binding.layoutAddleadsubmit.pbFormsecond.visibility = View.GONE
                 }
 
-
                 is UIState.Success -> {
                     doUpdateStatus(state.data.id, statusId)
                 }
@@ -248,7 +259,6 @@ class AddLeadSubmitFragment :
                     binding.layoutAddleadsubmit.btnFormsecondSubmit.visibility = View.VISIBLE
                     binding.layoutAddleadsubmit.pbFormsecond.visibility = View.GONE
                 }
-
 
                 is UIState.Success -> {
                     binding.layoutAddleadsubmit.btnFormsecondSubmit.visibility = View.VISIBLE
@@ -316,7 +326,6 @@ class AddLeadSubmitFragment :
             "IDNumberPhoto",
             requireContext()
         )
-
 
         val typePart: MultipartBody.Part? = dropDownInputToMultipart(
             binding.layoutAddleadsubmit.tvFormsecondType,
@@ -397,7 +406,8 @@ class AddLeadSubmitFragment :
                 )
             } else {
                 viewModel.postUpdateLead(
-                    viewModel.lead!!.id.toString(), PostLeadRequest(
+                    viewModel.lead!!.id.toString(),
+                    PostLeadRequest(
                         fullName = fullNamePart,
                         email = emailPart,
                         phone = phonePart,

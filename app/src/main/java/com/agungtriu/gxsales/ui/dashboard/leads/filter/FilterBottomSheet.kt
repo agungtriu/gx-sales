@@ -2,7 +2,6 @@ package com.agungtriu.gxsales.ui.dashboard.leads.filter
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +14,8 @@ import androidx.fragment.app.viewModels
 import com.agungtriu.gxsales.R
 import com.agungtriu.gxsales.databinding.BottomSheetFilterBinding
 import com.agungtriu.gxsales.ui.dashboard.leads.LeadsFragment.Companion.TO_FILTER_KEY
+import com.agungtriu.gxsales.utils.Date.millisToDate
 import com.agungtriu.gxsales.utils.UIState
-import com.agungtriu.gxsales.utils.Utils
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -79,15 +78,12 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
                         .dateRangePicker()
                         .setTitleText("Select dates")
                         .build()
-
                 }
             datePicker.show(childFragmentManager, "DatePicker")
             datePicker.addOnPositiveButtonClickListener {
                 first = datePicker.selection?.first?.minus(TimeUnit.HOURS.toMillis(7))
                 second = datePicker.selection?.second?.plus(TimeUnit.HOURS.toMillis(16))
 
-                Log.d("FIRST", Utils.millisToDateTime(first!!))
-                Log.d("SECOND", Utils.millisToDateTime(second!!))
                 displayDate(first, second)
                 viewModel.filter = Filter(
                     fromDate = first,
@@ -166,10 +162,9 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
     private fun displayDate(first: Long?, second: Long?) {
         if (first != null && second != null) {
             binding.btnBottomsheetfilterDate.text =
-                Utils.millisToDate(first)
+                millisToDate(first)
                     .plus(" - ")
-                    .plus(Utils.millisToDate(second))
-
+                    .plus(millisToDate(second))
         } else {
             binding.btnBottomsheetfilterDate.text = getString(R.string.hint_range_date)
         }
@@ -310,7 +305,6 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
         shimmer.stopShimmer()
         shimmer.visibility = View.GONE
         layout.visibility = View.VISIBLE
-
     }
 
     companion object {

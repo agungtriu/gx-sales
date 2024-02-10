@@ -26,7 +26,7 @@ class AuthorizationRepositoryImp @Inject constructor(
                     login(tokenModel = StatusModel(token = result.token, type = result.type))
                     emit(UIState.Success(result))
                 } else {
-                    throw IllegalStateException("error")
+                     throw IllegalStateException("error")
                 }
             } catch (t: Throwable) {
                 emit(UIState.Error(t.toErrorResponse()))
@@ -71,5 +71,4 @@ class AuthorizationRepositoryImp @Inject constructor(
     }
 
     override fun getStatus(): Flow<StatusModel> = dataStoreManager.getStatus()
-
 }

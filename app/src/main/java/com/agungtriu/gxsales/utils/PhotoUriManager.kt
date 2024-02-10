@@ -62,7 +62,7 @@ object PhotoUriManager {
 
     private val listSize = listOf("B", "KB", "MB", "GB", "TB", "PB")
     private const val BYTE = 1024
-    private fun byteToDisplay(size: Long): String {
+    fun byteToDisplay(size: Long): String {
         var step = 0
         var temp = size
         while (temp / BYTE > 0) {

@@ -2,18 +2,16 @@ package com.agungtriu.gxsales.ui.dashboard.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.agungtriu.gxsales.base.BaseFragment
 import com.agungtriu.gxsales.data.remote.response.StatusesItem
 import com.agungtriu.gxsales.databinding.FragmentHomeBinding
+import com.agungtriu.gxsales.utils.Date.beforeDayMillis
+import com.agungtriu.gxsales.utils.Date.endOfDayMillis
+import com.agungtriu.gxsales.utils.Date.millisToDisplayDate
 import com.agungtriu.gxsales.utils.UIState
-import com.agungtriu.gxsales.utils.Utils
-import com.agungtriu.gxsales.utils.Utils.beforeDayMillis
-import com.agungtriu.gxsales.utils.Utils.endOfDayMillis
-import com.agungtriu.gxsales.utils.Utils.millisToDisplayDate
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         adapter = HomeAdapter()
         binding.rvHome.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvHome.adapter = adapter
-        Log.d("BEFORE", Utils.millisToDateTime(viewModel.fromMillis))
-        Log.d("TO", Utils.millisToDateTime(viewModel.toMillis))
+
         binding.btnHomeDate.text = millisToDisplayDate(viewModel.fromMillis)
             .plus(" - ")
             .plus(millisToDisplayDate(viewModel.toMillis))
@@ -66,6 +63,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 viewModel.getDashboard()
             }
         }
+        binding.swipeHome.setOnRefreshListener {
+            viewModel.getDashboard()
+            if (binding.tvHomeName.text.isNullOrBlank()) {
+                viewModel.getProfile()
+            }
+        }
     }
 
     private fun setUpObserver() {
@@ -90,23 +93,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             when (it) {
                 is UIState.Loading -> startShimmerDashboard()
                 is UIState.Error -> {
+                    stopShimmerDashboard()
                     Snackbar.make(requireView(), it.error.message.toString(), Snackbar.LENGTH_LONG)
                         .show()
-                    stopShimmerDashboard()
+                    binding.layoutHomeError.constraintError.visibility = View.VISIBLE
+                    binding.rvHome.visibility = View.INVISIBLE
+                    binding.layoutHomeError.tvError.text = it.error.message
                 }
 
                 is UIState.Success -> {
                     stopShimmerDashboard()
                     val result = mutableListOf(StatusesItem(total = it.data.total, name = null))
                     if (!it.data.statuses.isNullOrEmpty()) {
+                        binding.layoutHomeError.constraintError.visibility = View.INVISIBLE
+                        binding.rvHome.visibility = View.VISIBLE
                         result.addAll(it.data.statuses)
                         adapter.submitList(result)
+                    } else {
+                        binding.layoutHomeError.constraintError.visibility = View.VISIBLE
+                        binding.rvHome.visibility = View.INVISIBLE
                     }
                 }
             }
         }
-
-
     }
 
     private fun startShimmerProfile() {
@@ -116,7 +125,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.tvHomeEmail.visibility = View.INVISIBLE
     }
 
-
     private fun stopShimmerProfile() {
         binding.shimmerHomeProfile.stopShimmer()
         binding.shimmerHomeProfile.visibility = View.GONE
@@ -125,12 +133,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun startShimmerDashboard() {
+        binding.swipeHome.isRefreshing = true
         binding.shimmerHome.startShimmer()
         binding.shimmerHome.visibility = View.VISIBLE
         binding.rvHome.visibility = View.INVISIBLE
     }
 
     private fun stopShimmerDashboard() {
+        binding.swipeHome.isRefreshing = false
         binding.shimmerHome.stopShimmer()
         binding.shimmerHome.visibility = View.GONE
         binding.rvHome.visibility = View.VISIBLE

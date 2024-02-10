@@ -12,7 +12,9 @@ abstract class DataModule {
 
     @Singleton
     @Binds
-    abstract fun bindAuthorizationRepository(authorizationRepositoryImp: AuthorizationRepositoryImp): AuthorizationRepository
+    abstract fun bindAuthorizationRepository(
+        authorizationRepositoryImp: AuthorizationRepositoryImp
+    ): AuthorizationRepository
 
     @Singleton
     @Binds
@@ -22,4 +24,7 @@ abstract class DataModule {
     @Binds
     abstract fun bindLeadsRepository(leadsRepositoryImp: LeadsRepositoryImp): LeadsRepository
 
+    @Singleton
+    @Binds
+    abstract fun bindShopRepository(shopRepositoryImp: ShopRepositoryImp): ShopRepository
 }

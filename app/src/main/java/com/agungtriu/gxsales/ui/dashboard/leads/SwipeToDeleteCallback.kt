@@ -50,7 +50,8 @@ class SwipeToDeleteCallback(private val adapter: LeadsAdapter) :
             deleteIcon.setBounds(iconLeft, iconTop, iconRight, iconBottom)
 
             background.setBounds(
-                itemView.left, itemView.top,
+                itemView.left,
+                itemView.top,
                 itemView.left + dX.toInt() + backgroundCornerOffset,
                 itemView.bottom
             )
@@ -61,7 +62,9 @@ class SwipeToDeleteCallback(private val adapter: LeadsAdapter) :
 
             background.setBounds(
                 itemView.right + dX.toInt() - backgroundCornerOffset,
-                itemView.top, itemView.right, itemView.bottom
+                itemView.top,
+                itemView.right,
+                itemView.bottom
             )
         } else { // View is unSwiped
             background.setBounds(0, 0, 0, 0)

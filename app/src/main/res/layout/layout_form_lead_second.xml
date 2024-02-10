@@ -19,7 +19,7 @@
             app:navigationIcon="@drawable/ic_back"
             app:title="@string/form_add_lead"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleLarge" />
+            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleMedium.SemiBold" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                     android:hint="@string/form_hint_select_lead_type"
                     android:inputType="none"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="#667085" />
+                    android:textColorHint="@color/color_all_text_button" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,7 +135,7 @@
                     android:hint="@string/form_hint_select_lead_channel"
                     android:inputType="none"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="#667085" />
+                    android:textColorHint="@color/color_all_text_button" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -187,7 +187,7 @@
                     android:hint="@string/form_hint_select_lead_media"
                     android:inputType="none"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="#667085" />
+                    android:textColorHint="@color/color_all_text_button" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -239,7 +239,7 @@
                     android:hint="@string/form_hint_select_lead_source"
                     android:inputType="none"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="#667085" />
+                    android:textColorHint="@color/color_all_text_button" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -291,7 +291,7 @@
                     android:hint="@string/form_hint_select_lead_status"
                     android:inputType="none"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="#667085" />
+                    android:textColorHint="@color/color_all_text_button" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -343,7 +343,7 @@
                     android:hint="@string/form_hint_select_lead_probability"
                     android:inputType="none"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="#667085" />
+                    android:textColorHint="@color/color_all_text_button" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -379,7 +379,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_formsecond_note"
-                style="@style/Theme.GXSales.OutlinedRoundedBox"
+                style="@style/Theme.GXSales.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -403,7 +403,7 @@
                     android:minLines="4"
                     android:scrollbars="vertical"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColorHint="@color/color_edit_text" />
+                    android:textColorHint="@color/color_all_edit_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -451,7 +451,7 @@
 
     <Button
         android:id="@+id/btn_formsecond_submit"
-        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Login"
+        style="@style/Theme.GXSales.Button.OutlinedRoundedBox.Yellow"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -99,7 +99,6 @@ class AccountBottomSheet : BottomSheetDialogFragment() {
         binding.shimmerBottomsheetaccountProfile.visibility = View.GONE
         binding.tvBottomsheetaccountName.visibility = View.VISIBLE
         binding.tvBottomsheetaccountEmail.visibility = View.VISIBLE
-
     }
 
     companion object {

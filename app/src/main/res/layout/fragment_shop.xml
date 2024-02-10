@@ -20,17 +20,16 @@
             app:navigationIcon="@drawable/ic_back"
             app:title="Shop Item"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleLarge" />
+            app:titleTextAppearance="@style/Theme.GXSales.TextAppearance.TitleMedium.Bold" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_shop_search"
-        style="@style/Theme.GXSales.OutlinedRoundedBox.Search"
+        style="@style/Theme.GXSales.TextInputLayout.OutlinedBox.Search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        app:boxStrokeColor="@color/color_edit_text_border"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
         app:hintEnabled="false"
         app:layout_constraintTop_toBottomOf="@id/appbar_shop">
 
@@ -42,10 +41,10 @@
             android:drawablePadding="8dp"
             android:fontFamily="@font/inter_regular"
             android:hint="@string/shop_search_hint"
-            android:imeOptions="actionDone"
-            android:inputType="textPersonName"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            android:textColorHint="@color/color_edit_text" />
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:textColorHint="@color/color_all_edit_text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,6 +63,32 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_shop_search" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_shop"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_shop_search">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_shop_shimmer" />
+
+            <include layout="@layout/item_shop_shimmer" />
+
+            <include layout="@layout/item_shop_shimmer" />
+
+            <include layout="@layout/item_shop_shimmer" />
+
+            <include layout="@layout/item_shop_shimmer" />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

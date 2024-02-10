@@ -33,7 +33,6 @@ class AccountViewModel @Inject constructor(private val authorizationRepository: 
         }
     }
 
-
     fun postLogout() {
         viewModelScope.launch {
             authorizationRepository.postLogout().collect {

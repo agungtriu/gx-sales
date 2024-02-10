@@ -12,8 +12,8 @@ import com.agungtriu.gxsales.R
 import com.agungtriu.gxsales.data.remote.response.LeadResponse
 import com.agungtriu.gxsales.databinding.ItemLeadsBinding
 import com.agungtriu.gxsales.ui.MainActivity
-import com.agungtriu.gxsales.ui.dashboard.addlead.AddLeadFragment.Companion.UPDATE_KEY
-import com.agungtriu.gxsales.utils.Utils
+import com.agungtriu.gxsales.ui.dashboard.formlead.FormLeadFragment.Companion.UPDATE_KEY
+import com.agungtriu.gxsales.utils.Date
 
 class LeadsAdapter(private val activity: Activity, private val viewModel: LeadsViewModel) :
     ListAdapter<LeadResponse, LeadsAdapter.ViewHolder>(callback) {
@@ -38,7 +38,7 @@ class LeadsAdapter(private val activity: Activity, private val viewModel: LeadsV
             binding.tvItemleadsName.text = item.fullName
             binding.tvItemleadsNumber.text = "#".plus(item.number)
             binding.tvItemleadsAddress.text = item.address
-            binding.tvItemleadsDate.text = Utils.displayDate(item.createdAt!!)
+            binding.tvItemleadsDate.text = Date.displayDate(item.createdAt!!)
             binding.tvItemleadsStatus.text = item.status?.name
             binding.tvItemleadsProbability.text = item.probability?.name
             binding.tvItemleadsBranch.text = item.branchOffice?.name
@@ -75,7 +75,7 @@ class LeadsAdapter(private val activity: Activity, private val viewModel: LeadsV
 
             binding.constraintItemleads.setOnClickListener {
                 (activity as MainActivity).navigate(
-                    R.id.action_global_to_addLeadFragment,
+                    R.id.action_global_to_form_navigation,
                     bundleOf(UPDATE_KEY to item.id)
                 )
             }
@@ -89,7 +89,6 @@ class LeadsAdapter(private val activity: Activity, private val viewModel: LeadsV
 
             override fun areContentsTheSame(oldItem: LeadResponse, newItem: LeadResponse): Boolean =
                 oldItem.id == newItem.id
-
         }
     }
 }

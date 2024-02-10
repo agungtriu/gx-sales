@@ -32,7 +32,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/inter_semi_bold"
         android:includeFontPadding="false"
-        android:text="Data Not Found"
+        android:text="@string/error_data_not_found"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
         android:textColor="?attr/colorOnSurface"

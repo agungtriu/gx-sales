@@ -12,7 +12,6 @@ import com.agungtriu.gxsales.databinding.FragmentDashboardBinding
 import com.agungtriu.gxsales.ui.dashboard.account.AccountBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class DashboardFragment :
     BaseFragment<FragmentDashboardBinding>(FragmentDashboardBinding::inflate) {
@@ -72,7 +71,7 @@ class DashboardFragment :
         }
 
         binding.btnDashboard.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_addLeadFragment)
+            findNavController().navigate(R.id.action_dashboardFragment_to_form_navigation)
         }
     }
 }
