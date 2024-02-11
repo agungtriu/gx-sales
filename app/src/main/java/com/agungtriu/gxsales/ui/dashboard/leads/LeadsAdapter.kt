@@ -1,6 +1,8 @@
 package com.agungtriu.gxsales.ui.dashboard.leads
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -42,36 +44,11 @@ class LeadsAdapter(private val activity: Activity, private val viewModel: LeadsV
             binding.tvItemleadsStatus.text = item.status?.name
             binding.tvItemleadsProbability.text = item.probability?.name
             binding.tvItemleadsBranch.text = item.branchOffice?.name
+            binding.tvItemleadsStatus.backgroundTintList =
+                stateDisplay(itemView.context, item.status?.name)
 
-            binding.tvItemleadsStatus.backgroundTintList = when (item.status?.name) {
-                "Scheduled" -> ContextCompat.getColorStateList(
-                    itemView.context,
-                    R.color.color_scheduled
-                )
-
-                "Consideration" -> ContextCompat.getColorStateList(
-                    itemView.context,
-                    R.color.color_consideration
-                )
-
-                "Junk" -> ContextCompat.getColorStateList(itemView.context, R.color.color_junk)
-                else -> ContextCompat.getColorStateList(itemView.context, R.color.black)
-            }
-
-            binding.tvItemleadsProbability.backgroundTintList = when (item.probability?.name) {
-                "Pending" -> ContextCompat.getColorStateList(
-                    itemView.context,
-                    R.color.color_pending
-                )
-
-                "Converted" -> ContextCompat.getColorStateList(
-                    itemView.context,
-                    R.color.color_converted
-                )
-
-                "Cancel" -> ContextCompat.getColorStateList(itemView.context, R.color.color_cancel)
-                else -> ContextCompat.getColorStateList(itemView.context, R.color.black)
-            }
+            binding.tvItemleadsProbability.backgroundTintList =
+                stateDisplay(itemView.context, item.probability?.name)
 
             binding.constraintItemleads.setOnClickListener {
                 (activity as MainActivity).navigate(
@@ -79,6 +56,18 @@ class LeadsAdapter(private val activity: Activity, private val viewModel: LeadsV
                     bundleOf(UPDATE_KEY to item.id)
                 )
             }
+        }
+    }
+
+    private fun stateDisplay(context: Context, state: String? = null): ColorStateList? {
+        return when (state) {
+            "Scheduled" -> ContextCompat.getColorStateList(context, R.color.color_scheduled)
+            "Consideration" -> ContextCompat.getColorStateList(context, R.color.color_consideration)
+            "Junk" -> ContextCompat.getColorStateList(context, R.color.color_junk)
+            "Pending" -> ContextCompat.getColorStateList(context, R.color.color_pending)
+            "Converted" -> ContextCompat.getColorStateList(context, R.color.color_converted)
+            "Cancel" -> ContextCompat.getColorStateList(context, R.color.color_cancel)
+            else -> ContextCompat.getColorStateList(context, R.color.black)
         }
     }
 
