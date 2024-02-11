@@ -35,6 +35,7 @@ class SwipeToDeleteCallback(private val adapter: LeadsAdapter) :
     ) {
         val deleteIcon: Drawable? =
             ContextCompat.getDrawable(viewHolder.itemView.context, R.drawable.ic_delete)
+        deleteIcon?.setTint(viewHolder.itemView.context.getColor(R.color.white))
         val background = ColorDrawable(Color.RED)
 
         val itemView = viewHolder.itemView
