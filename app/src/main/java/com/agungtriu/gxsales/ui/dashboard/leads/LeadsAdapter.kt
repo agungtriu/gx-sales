@@ -45,7 +45,7 @@ class LeadsAdapter(private val activity: Activity, private val viewModel: LeadsV
             binding.tvItemleadsProbability.text = item.probability?.name
             binding.tvItemleadsBranch.text = item.branchOffice?.name
             binding.tvItemleadsStatus.backgroundTintList =
-                stateDisplay(itemView.context, null)
+                stateDisplay(itemView.context, item.status?.name)
 
             binding.tvItemleadsProbability.backgroundTintList =
                 stateDisplay(itemView.context, item.probability?.name)
