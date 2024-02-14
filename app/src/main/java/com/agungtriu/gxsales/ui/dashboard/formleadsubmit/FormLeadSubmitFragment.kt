@@ -74,6 +74,13 @@ class FormLeadSubmitFragment :
         binding.layoutAddleadsubmit.btnFormsecondSubmit.setOnClickListener {
             submit()
         }
+
+        FormValidation.stateErrorListener(binding.layoutAddleadsubmit.tvFormsecondType)
+        FormValidation.stateErrorListener(binding.layoutAddleadsubmit.tvFormsecondChannel)
+        FormValidation.stateErrorListener(binding.layoutAddleadsubmit.tvFormsecondMedia)
+        FormValidation.stateErrorListener(binding.layoutAddleadsubmit.tvFormsecondSource)
+        FormValidation.stateErrorListener(binding.layoutAddleadsubmit.tvFormsecondStatus)
+        FormValidation.stateErrorListener(binding.layoutAddleadsubmit.tvFormsecondProbability)
     }
 
     private fun setUpObserver() {

@@ -20,6 +20,7 @@ import com.agungtriu.gxsales.databinding.LayoutImageBinding
 import com.agungtriu.gxsales.ui.dashboard.location.Location
 import com.agungtriu.gxsales.ui.dashboard.location.LocationFragment.Companion.LOCATION_KEY
 import com.agungtriu.gxsales.utils.FormValidation.dropDownInputToString
+import com.agungtriu.gxsales.utils.FormValidation.stateErrorListener
 import com.agungtriu.gxsales.utils.FormValidation.textInputToString
 import com.agungtriu.gxsales.utils.Gender
 import com.agungtriu.gxsales.utils.Phone
@@ -110,6 +111,11 @@ class FormLeadFragment : BaseFragment<FragmentAddLeadBinding>(FragmentAddLeadBin
                 false
             )
         }
+
+        stateErrorListener(binding.layoutAddForm.tvFormBranch)
+        stateErrorListener(binding.layoutAddForm.tietFormAddress)
+        stateErrorListener(binding.layoutAddForm.tietFormLatitude)
+        stateErrorListener(binding.layoutAddForm.tietFormLongitude)
     }
 
     private fun setUpObserver() {

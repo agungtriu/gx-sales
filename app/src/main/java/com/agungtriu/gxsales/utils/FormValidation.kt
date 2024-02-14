@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import com.agungtriu.gxsales.R
 import com.agungtriu.gxsales.data.remote.response.DataItem
 import com.google.android.material.textfield.TextInputEditText
@@ -134,6 +135,14 @@ object FormValidation {
             MultipartBody.Part.createFormData(key, null, textBody)
         } else {
             null
+        }
+    }
+
+    fun stateErrorListener(textView: TextView) {
+        textView.addTextChangedListener {
+            if (!it.isNullOrBlank()) {
+                textView.error = null
+            }
         }
     }
 }
