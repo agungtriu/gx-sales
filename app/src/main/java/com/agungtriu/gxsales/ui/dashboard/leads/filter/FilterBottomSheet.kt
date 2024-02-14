@@ -101,8 +101,8 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
                 viewModel.filter = Filter(
                     fromDate = viewModel.filter.fromDate,
                     toDate = viewModel.filter.toDate,
-                    status = viewModel.filter.status,
-                    channel = it.toString(),
+                    status = it.toString(),
+                    channel = viewModel.filter.channel,
                     media = viewModel.filter.media,
                     source = viewModel.filter.source
                 )
